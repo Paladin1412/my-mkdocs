@@ -1,0 +1,198 @@
+<!doctype html><html lang=zh class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="My Learning Notes"><link href=http://chenleileicode.com/history/PWA%20%E4%B9%8B%20Service%20Worker/ rel=canonical><meta name=author content="Chen Leilei"><link rel="shortcut icon" href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.1.2, mkdocs-material-5.3.0"><title>PWA 之 Service Worker - Tannhäuser Gate</title><link rel=stylesheet href=../../assets/stylesheets/main.6e35a1a6.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.a46bcfb3.min.css><meta name=theme-color content=#009688><link href=https://fonts.gstatic.com rel=preconnect crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style></head> <body dir=ltr data-md-color-scheme=default data-md-color-primary=teal data-md-color-accent=teal> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#1 class=md-skip> 跳转至 </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header-nav md-grid" aria-label=Header> <a href=http://chenleileicode.com title="Tannhäuser Gate" class="md-header-nav__button md-logo" aria-label="Tannhäuser Gate"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 89 89"><path d="M3.136 17.387v42.932l42.932 21.467L3.136 17.387z"/><path fill-opacity=.5 d="M21.91 8l42.933 64.398-18.775 9.388L3.136 17.387 21.91 8z"/><path d="M67.535 17.387L40.273 35.543l21.878 32.818 5.384 2.691V17.387z"/><path fill-opacity=.25 d="M67.535 17.387v53.666l18.774-9.388V8l-18.774 9.387z"/></svg> </a> <label class="md-header-nav__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header-nav__title data-md-component=header-title> <div class=md-header-nav__ellipsis> <span class="md-header-nav__topic md-ellipsis"> Tannhäuser Gate </span> <span class="md-header-nav__topic md-ellipsis"> PWA 之 Service Worker </span> </div> </div> <label class="md-header-nav__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=搜索 placeholder=搜索 autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear data-md-component=search-reset tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> <div class=md-header-nav__source> <a href=https://github.com/silverbulllet/my-mkdocs title="前往 GitHub 仓库" class=md-source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg> </div> <div class=md-source__repository> silverbulllet/my-mkdocs </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <nav class="md-tabs md-tabs--active" aria-label=Tabs data-md-component=tabs> <div class="md-tabs__inner md-grid"> <ul class=md-tabs__list> <li class=md-tabs__item> <a href=../.. class=md-tabs__link> Home </a> </li> <li class=md-tabs__item> <a href=../../learning%20notes/Javascript%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/ class=md-tabs__link> Learning Notes </a> </li> <li class=md-tabs__item> <a href=../../serverless/concept/ class=md-tabs__link> Serverless </a> </li> <li class=md-tabs__item> <a href=../../kubernetes/etcd%20deploy/ class=md-tabs__link> Kubernetes </a> </li> <li class=md-tabs__item> <a href=../Docker%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="md-tabs__link md-tabs__link--active"> History </a> </li> </ul> </div> </nav> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=http://chenleileicode.com title="Tannhäuser Gate" class="md-nav__button md-logo" aria-label="Tannhäuser Gate"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 89 89"><path d="M3.136 17.387v42.932l42.932 21.467L3.136 17.387z"/><path fill-opacity=.5 d="M21.91 8l42.933 64.398-18.775 9.388L3.136 17.387 21.91 8z"/><path d="M67.535 17.387L40.273 35.543l21.878 32.818 5.384 2.691V17.387z"/><path fill-opacity=.25 d="M67.535 17.387v53.666l18.774-9.388V8l-18.774 9.387z"/></svg> </a> Tannhäuser Gate </label> <div class=md-nav__source> <a href=https://github.com/silverbulllet/my-mkdocs title="前往 GitHub 仓库" class=md-source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg> </div> <div class=md-source__repository> silverbulllet/my-mkdocs </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. title=Home class=md-nav__link> Home </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-2 type=checkbox id=nav-2> <label class=md-nav__link for=nav-2> Learning Notes <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label="Learning Notes" data-md-level=1> <label class=md-nav__title for=nav-2> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Learning Notes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../learning%20notes/Javascript%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/ title="Javascript 设计模式" class=md-nav__link> Javascript 设计模式 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/Koa%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/ title=Koa源码解析 class=md-nav__link> Koa源码解析 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/Typescript%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ title="Typescript 学习笔记" class=md-nav__link> Typescript 学习笔记 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/Webpack%205%20%E6%8E%A2%E7%B4%A2/ title="Webpack 5 探索" class=md-nav__link> Webpack 5 探索 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%E4%B8%8E%E6%89%A7%E8%A1%8C%E4%B8%8A%E7%BA%BF%E6%96%87/ title=作用域链与执行上线文 class=md-nav__link> 作用域链与执行上线文 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%8E%E7%BB%A7%E6%89%BF/ title=原型链与继承 class=md-nav__link> 原型链与继承 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/%E6%89%8B%E6%92%B8%20Promise/ title="手撸 Promise" class=md-nav__link> 手撸 Promise </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97/ title=浏览器内核模块 class=md-nav__link> 浏览器内核模块 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/%E9%97%AD%E5%8C%85/ title=闭包 class=md-nav__link> 闭包 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-3 type=checkbox id=nav-3> <label class=md-nav__link for=nav-3> Serverless <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Serverless data-md-level=1> <label class=md-nav__title for=nav-3> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Serverless </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../serverless/concept/ title=Concept class=md-nav__link> Concept </a> </li> <li class=md-nav__item> <a href=../../serverless/openfaas/ title=Openfaas class=md-nav__link> Openfaas </a> </li> <li class=md-nav__item> <a href=../../serverless/knative/ title=Knative class=md-nav__link> Knative </a> </li> <li class=md-nav__item> <a href=../../serverless/serverless-docs%20tmp%20notes/ title=技术分享草稿 class=md-nav__link> 技术分享草稿 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-4 type=checkbox id=nav-4> <label class=md-nav__link for=nav-4> Kubernetes <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=nav-4> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../kubernetes/etcd%20deploy/ title=Etcd class=md-nav__link> Etcd </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kubeadm-deployment/ title="kubeadm deployment" class=md-nav__link> kubeadm deployment </a> </li> <li class=md-nav__item> <a href=../../kubernetes/init-master-for-calico.sh/ title=Calico class=md-nav__link> Calico </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-addons/ title="Kubernetes 插件" class=md-nav__link> Kubernetes 插件 </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-certs/ title="Kubernetes 证书" class=md-nav__link> Kubernetes 证书 </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-istio/ title=Istio class=md-nav__link> Istio </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-prometheus/ title=prometheus class=md-nav__link> prometheus </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-storage/ title=storage class=md-nav__link> storage </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-openfaas/ title=openfaas class=md-nav__link> openfaas </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-openfaas-cloud/ title=openfaas-cloud class=md-nav__link> openfaas-cloud </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-tekton/ title=tekton class=md-nav__link> tekton </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-knative/ title=knative class=md-nav__link> knative </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-5 type=checkbox id=nav-5 checked> <label class=md-nav__link for=nav-5> History <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=History data-md-level=1> <label class=md-nav__title for=nav-5> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> History </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../Docker%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ title=1.Docker概念 class=md-nav__link> 1.Docker概念 </a> </li> <li class=md-nav__item> <a href=../Electron%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ title="Electron 学习笔记" class=md-nav__link> Electron 学习笔记 </a> </li> <li class=md-nav__item> <a href=../JavaScript%20%E4%B9%8B%20Advanced%20Algorithms/ title="JavaScript 之 Advanced Algorithms" class=md-nav__link> JavaScript 之 Advanced Algorithms </a> </li> <li class=md-nav__item> <a href=../JavaScript%20%E4%B9%8B%E4%BA%8C%E5%8F%89%E6%A0%91/ title="JavaScript 之二叉树" class=md-nav__link> JavaScript 之二叉树 </a> </li> <li class=md-nav__item> <a href=../JavaScript%20%E4%B9%8B%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/ title="JavaScript 之十大经典排序算法" class=md-nav__link> JavaScript 之十大经典排序算法 </a> </li> <li class=md-nav__item> <a href=../JavaScript%20%E4%B9%8B%E5%9B%BE%E5%92%8C%E5%9B%BE%E7%B1%BB%E7%AE%97%E6%B3%95/ title="JavaScript 之图和图类算法" class=md-nav__link> JavaScript 之图和图类算法 </a> </li> <li class=md-nav__item> <a href=../JavaScript%20%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/ title="JavaScript 事件模型" class=md-nav__link> JavaScript 事件模型 </a> </li> <li class=md-nav__item> <a href=../Javascript%20%E4%B9%8B%E9%87%8D%E5%A4%8D%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2n%E6%AC%A1/ title="Javascript 之重复一个字符串n次" class=md-nav__link> Javascript 之重复一个字符串n次 </a> </li> <li class=md-nav__item> <a href=../Javascript%20%E5%AD%A6%E4%B9%A0%E4%B9%8B%20Object.defineProperty%28%29/ title="Javascript 学习之 Object.defineProperty()" class=md-nav__link> Javascript 学习之 Object.defineProperty() </a> </li> <li class=md-nav__item> <a href=../Javascript%20%E5%AD%A6%E4%B9%A0%E4%B9%8B%20this/ title="Javascript 学习之 this" class=md-nav__link> Javascript 学习之 this </a> </li> <li class=md-nav__item> <a href=../Javascript%20%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/ title="Javascript 学习之深拷贝和浅拷贝" class=md-nav__link> Javascript 学习之深拷贝和浅拷贝 </a> </li> <li class=md-nav__item> <a href=../Javascript%20%E8%83%BD%E5%8A%9B%E6%B5%8B%E8%AF%84%E7%BB%8F%E5%85%B8%E9%A2%98/ title="Javascript 能力测评经典题" class=md-nav__link> Javascript 能力测评经典题 </a> </li> <li class=md-nav__item> <a href=../Koa2%2BMongoDB%20%E6%9E%84%E5%BB%BA%20Restful%20%E5%90%8E%E7%AB%AF/ title="Koa2+MongoDB 构建 Restful 后端" class=md-nav__link> Koa2+MongoDB 构建 Restful 后端 </a> </li> <li class=md-nav__item> <a href=../NodeJS%20%E5%B8%B8%E7%94%A8%E5%8C%85%E5%8F%8A%E5%8A%9F%E8%83%BD/ title="NodeJS 常用包及功能" class=md-nav__link> NodeJS 常用包及功能 </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <a href=./ title="PWA 之 Service Worker" class="md-nav__link md-nav__link--active"> PWA 之 Service Worker </a> </li> <li class=md-nav__item> <a href=../Vuejs%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%8A%EF%BC%89/ title="Vuejs 学习笔记之基础篇（上）" class=md-nav__link> Vuejs 学习笔记之基础篇（上） </a> </li> <li class=md-nav__item> <a href=../Vuejs%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/ title="Vuejs 学习笔记之基础篇（下）" class=md-nav__link> Vuejs 学习笔记之基础篇（下） </a> </li> <li class=md-nav__item> <a href=../Vuejs%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%20Vuex/ title="Vuejs 学习笔记之状态管理 Vuex" class=md-nav__link> Vuejs 学习笔记之状态管理 Vuex </a> </li> <li class=md-nav__item> <a href=../Vuejs%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BF%87%E6%B8%A1%E5%8A%A8%E7%94%BB/ title="Vuejs 学习笔记之过渡动画" class=md-nav__link> Vuejs 学习笔记之过渡动画 </a> </li> <li class=md-nav__item> <a href=../Web%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/ title=Web实用工具收集 class=md-nav__link> Web实用工具收集 </a> </li> <li class=md-nav__item> <a href=../%E5%9B%BE%E8%A7%A3%20HTTP%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ title="图解 HTTP 学习笔记" class=md-nav__link> 图解 HTTP 学习笔记 </a> </li> <li class=md-nav__item> <a href=../%E5%9F%BA%E4%BA%8E%20CodeIgniter%20%E7%9A%84%E8%BF%90%E7%BB%B4%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/ title="基于 CodeIgniter 的运维监控系统实现" class=md-nav__link> 基于 CodeIgniter 的运维监控系统实现 </a> </li> <li class=md-nav__item> <a href=../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%9D%82%E8%AE%B0/ title=基础知识杂记 class=md-nav__link> 基础知识杂记 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../../about/ title=About class=md-nav__link> About </a> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label=目录> </nav> </div> </div> </div> <div class=md-content> <article class="md-content__inner md-typeset"> <blockquote> <p>Progressive Web Apps ，简称 PWA， 号称下一代 Web 应用模型，兀自风靡。作为前端爱好者，也想一窥究竟。说起 PWA ，必绕不开 Service Worker 和离线 Cache ，本文简述其原理，并通过一个简单 DEMO 验证一下。</p> </blockquote> <p><br></p> <h1 id=1>1. 概念<a class=headerlink href=#1 title="Permanent link">&para;</a></h1> <p>Service Worker 是一段**独立于当前页面，运行于浏览器后台进程**的脚本。</p> <p><strong>注意</strong>：</p> <ul> <li>Service Worker 异步运行，且独立于全局上下文。</li> <li>Service Worker 没有操作DOM的权限。但可通过 <code>postMessage</code> 方法与Web页面通信，让页面操作DOM。</li> <li>Service Worker 是事件驱动。处于 Idle 状态时，随时会被浏览器回收，以节省内存。</li> </ul> <p><br></p> <h1 id=2>2. 生命周期<a class=headerlink href=#2 title="Permanent link">&para;</a></h1> <p><img alt=sw-lifecycle src=http://47.94.165.69:3031/upload/aaa/474a05cc53dc7.png> </p> <p>由图可见，一个 Service Worker 一生能经历如下过程：</p> <ol> <li>安装；</li> <li>激活，可通过 <code>chrome://inspect/#service-workers</code> 查看到当前运行的service worker；</li> <li>空闲，监听 fetch 和 message 事件；</li> <li>销毁，若长期不使用或内存有限，浏览器会销毁之，以回收内存。</li> </ol> <h3 id=fetch>fetch 事件<a class=headerlink href=#fetch title="Permanent link">&para;</a></h3> <p>向页面发送 http 请求时，Service Worker 可以通过 fetch 事件拦截请求，并且给出自己的响应。</p> <h3 id=message>message 事件<a class=headerlink href=#message title="Permanent link">&para;</a></h3> <p>页面和 serviceWorker 之间可以通过 postMessage() 方法发送消息，发送的消息可以通过 message 事件接收到。</p> <p><br></p> <h1 id=3>3. 环境和调试<a class=headerlink href=#3 title="Permanent link">&para;</a></h1> <h2 id=31-https>3.1 HTTPS<a class=headerlink href=#31-https title="Permanent link">&para;</a></h2> <p>服务器需要支持 HTTPS。因为通过 Service Worker 可以劫持连接，伪造和过滤响应；只能在 HTTPS 的网页上注册 Service Workers，防止以上恶意篡改行为。</p> <h2 id=32>3.2 调试工具<a class=headerlink href=#32 title="Permanent link">&para;</a></h2> <ul> <li> <p><code>chrome://inspect/#service-workers</code> : 查看 Service workers 列表。</p> </li> <li> <p><code>chrome://serviceworker-internals/</code> : 查看 Service Worker 详细信息和状态，且调试时可执行 unregister、stop、start 等操作。</p> </li> <li><code>ChromeDevTools</code> : 选择 Application 选项卡 &gt; Service Workers, 可查看 Service Worker 脚本，设置网络状态，包括 offline， update on reload 等。</li> </ul> <h2 id=33>3.3 离线存储数据建议<a class=headerlink href=#33 title="Permanent link">&para;</a></h2> <p>对 <strong>URL寻址资源</strong> (URL addressable resources)，使用 <a href=https://davidwalsh.name/cache>Cache API</a>（这是 <a href=https://developers.google.com/web/fundamentals/primers/service-worker/ >Service Worker</a> 的一部分）。对其他数据，使用 <strong>IndexedDB</strong>（包裹进 <a href=http://www.html5rocks.com/en/tutorials/es6/promises/ >Promises</a>）。</p> <p><br></p> <h1 id=4-service-worker>4. Service Worker 原理<a class=headerlink href=#4-service-worker title="Permanent link">&para;</a></h1> <p>以下是通过 Service Worker 和 Cache API 实现的一个URL寻址资源缓存的 DEMO。原文参阅 <a href=https://developers.google.com/web/fundamentals/getting-started/primers/service-workers>service-workers</a>。 </p> <h2 id=41-register-a-service-worker>4.1 Register a service worker<a class=headerlink href=#41-register-a-service-worker title="Permanent link">&para;</a></h2> <p>首先在页面里注册 service worker ，这就告诉了浏览器你的 service worker JavaScript file 在哪儿。</p> <div class=highlight><pre><span></span><code>if (&#39;serviceWorker&#39; in navigator) {
+    window.addEventListener(&#39;load&#39;, function() {
+        navigator.serviceWorker.register(&#39;/sw.js&#39;).then(function(registration) {
+            // Registration was successful
+            console.log(&#39;ServiceWorker registration successful with scope: &#39;, registration.scope);
+        }, function(err) {
+            // registration failed :(
+            console.log(&#39;ServiceWorker registration failed: &#39;, err);
+        });
+    });
+}
+</code></pre></div> <p>You can call <code>register()</code> every time a page loads without concern; the browser will figure out if the service worker is already registered or not and handle it accordingly.</p> <p><strong>注意</strong>： service worker file 在域的根目录下，表示 the service worker's scope will be the entire origin. 若注册为<code>/example/sw.js</code>，则表示 service worker 只可见 <code>fetch</code> events for pages whose URL starts with <code>/example/</code> 。</p> <h2 id=42-install-a-service-worker>4.2 Install a service worker<a class=headerlink href=#42-install-a-service-worker title="Permanent link">&para;</a></h2> <p>注册完成之后，在 service worker script 里处理 <code>install</code> 事件。在 <code>install</code> 事件的 callback 里执行以下步骤：</p> <ol> <li>Open a cache.</li> <li>Cache our files.</li> <li>Confirm whether all the required assets are cached or not.</li> </ol> <div class=highlight><pre><span></span><code>var CACHE_NAME = &#39;my-site-cache-v1&#39;;
+var urlsToCache = [
+  &#39;/&#39;,
+  &#39;/styles/main.css&#39;,
+  &#39;/script/main.js&#39;
+];
+
+self.addEventListener(&#39;install&#39;, function(event) {
+  // Perform install steps
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        console.log(&#39;Opened cache&#39;);
+        return cache.addAll(urlsToCache);
+      })
+  );
+});
+</code></pre></div> <p><code>event.waitUntil()</code> method 的参数为 a chain of promises (<code>caches.open()</code> and <code>cache.addAll()</code>). 打开名为 CACHE_NAME 的 cache ，然后缓存 urlsToCache 数组中所列的文件。</p> <p><strong>注意</strong> ： If <strong>any</strong> of the files fail to download, then the install step will fail. This allows you to rely on having all the assets that you defined, but does mean you need to be careful with the list of files you decide to cache in the install step.</p> <h2 id=43-cache-and-return-requests>4.3 Cache and return requests<a class=headerlink href=#43-cache-and-return-requests title="Permanent link">&para;</a></h2> <p>安装成功之后，当刷新或访问另一个页面时，service worker 将开始接收 <code>fetch</code> 事件。</p> <p>拦截网络请求， <code>event.respondWith()</code> method 的参数为 <code>caches.match()</code> ， 用来匹配请求。若缓存命中，则返回缓存资源，否则，返回网络请求 <code>fetch</code> 的结果。</p> <div class=highlight><pre><span></span><code>self.addEventListener(&#39;fetch&#39;, function(event) {
+  event.respondWith(
+    caches.match(event.request)
+      .then(function(response) {
+        // Cache hit - return response
+        if (response) {
+          return response;
+        }
+        return fetch(event.request);
+      }
+    )
+  );
+});
+</code></pre></div> <p>若想要 cache new requests cumulatively， 我们可以通过缓存 response of the fetch request 来实现。</p> <p>步骤如下：</p> <ol> <li>Add a callback to <code>.then()</code> on the <code>fetch</code> request.</li> <li>Once we get a response, we perform the following checks:</li> <li>Ensure the response is valid.</li> <li>Check the status is <code>200</code> on the response.</li> <li>Make sure the response type is <strong>basic</strong>, which indicates that it's a request from our origin. This means that requests to third party assets aren't cached as well.</li> <li>If we pass the checks, we <a href=https://fetch.spec.whatwg.org/#dom-response-clone>clone</a> the response. </li> </ol> <p><strong>注意</strong>： request 和 response 都是 stream, 只能消费一次。因此将它们克隆，一份传给 cache， 一份传给 browser。</p> <div class=highlight><pre><span></span><code>self.addEventListener(&#39;fetch&#39;, function(event) {
+  event.respondWith(
+    caches.match(event.request)
+      .then(function(response) {
+        // Cache hit - return response
+        if (response) {
+          return response;
+        }
+
+        // IMPORTANT: Clone the request. A request is a stream and
+        // can only be consumed once. Since we are consuming this
+        // once by cache and once by the browser for fetch, we need
+        // to clone the response.
+        var fetchRequest = event.request.clone();
+
+        return fetch(fetchRequest).then(
+          function(response) {
+            // Check if we received a valid response
+            if(!response || response.status !== 200 || response.type !== &#39;basic&#39;) {
+              return response;
+            }
+
+            // IMPORTANT: Clone the response. A response is a stream
+            // and because we want the browser to consume the response
+            // as well as the cache consuming the response, we need
+            // to clone it so we have two streams.
+            var responseToCache = response.clone();
+
+            caches.open(CACHE_NAME)
+              .then(function(cache) {
+                cache.put(event.request, responseToCache);
+              });
+
+            return response;
+          }
+        );
+      })
+    );
+});
+</code></pre></div> <h2 id=44-update-a-service-worker>4.4 Update a service worker<a class=headerlink href=#44-update-a-service-worker title="Permanent link">&para;</a></h2> <p>service worker 何时更新，更新步骤又如何？</p> <ol> <li>跳转至本页时，浏览器尝试重新下载 service worker JavaScript file，若与当前不同，则认为它是新的。</li> <li>新 service worker 启动，<code>install</code> event 被触发。</li> <li>此时，老 service worker 依旧控制页面，新 service worker 进入 <code>waiting</code> 状态。</li> <li>此页面关闭时，老 service worker 被杀死，新 service worker 才掌握控制权。</li> <li>新 service worker 的 <code>activate</code> event 被触发。</li> </ol> <p><code>activate</code> 事件使用的一个场景就是， if you were to wipe out any old caches in the install step。</p> <p>举个栗子，比如我们想将 cache 一分为二 <code>'pages-cache-v1'</code> 和 <code>'blog-posts-cache-v1'</code>。意味着，我们在 install step 创建这两个 cache， 在 activate step 删除 <code>'my-site-cache-v1'</code>。</p> <div class=highlight><pre><span></span><code>self.addEventListener(&#39;activate&#39;, function(event) {
+
+  var cacheWhitelist = [&#39;pages-cache-v1&#39;, &#39;blog-posts-cache-v1&#39;];
+
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.map(function(cacheName) {
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+});
+</code></pre></div> <h2 id=45>4.5 验证步骤<a class=headerlink href=#45 title="Permanent link">&para;</a></h2> <ol> <li> <p><code>ChromeDevTools</code> 中 Application 选项卡 &gt; Cache Storage 查看缓存成功与否。</p> </li> <li> <p>若缓存成功，Application 选项卡 &gt; Service Workers 将网络置为 offline。</p> </li> <li> <p>重新访问页面，server worker 拦截请求，缓存命中。</p> <p>​</p> </li> </ol> <p>DEMO 地址，见 <a href=https://silverbulllet.github.io/ >https://silverbulllet.github.io/</a></p> <p><br></p> <h1 id=5-my-first-progressive-web-app>5. My First Progressive Web App<a class=headerlink href=#5-my-first-progressive-web-app title="Permanent link">&para;</a></h1> <ul> <li>下载 <a href=https://github.com/googlecodelabs/your-first-pwapp/archive/master.zip>The sample code</a>, 包含 WeatherApp 的代码，不用赘述。</li> </ul> <h2 id=51-cache-the-site-assets>5.1 Cache the site assets<a class=headerlink href=#51-cache-the-site-assets title="Permanent link">&para;</a></h2> <p>service worker 注册后，install event 触发， 在 callback 内 cache 应用需要的所有资源。</p> <div class=highlight><pre><span></span><code>var cacheName = &#39;my-first-pwapp-assets-v1&#39;;
+
+var filesToCache = [
+  &#39;/my-first-pwapp/&#39;,
+  &#39;/my-first-pwapp/index.html&#39;,
+  &#39;/my-first-pwapp/scripts/app.js&#39;,
+  &#39;/my-first-pwapp/styles/inline.css&#39;,
+  &#39;/my-first-pwapp/images/clear.png&#39;,
+  &#39;/my-first-pwapp/images/cloudy-scattered-showers.png&#39;,
+  &#39;/my-first-pwapp/images/cloudy.png&#39;,
+  &#39;/my-first-pwapp/images/fog.png&#39;,
+  &#39;/my-first-pwapp/images/ic_add_white_24px.svg&#39;,
+  &#39;/my-first-pwapp/images/ic_refresh_white_24px.svg&#39;,
+  &#39;/my-first-pwapp/images/partly-cloudy.png&#39;,
+  &#39;/my-first-pwapp/images/rain.png&#39;,
+  &#39;/my-first-pwapp/images/scattered-showers.png&#39;,
+  &#39;/my-first-pwapp/images/sleet.png&#39;,
+  &#39;/my-first-pwapp/images/snow.png&#39;,
+  &#39;/my-first-pwapp/images/thunderstorm.png&#39;,
+  &#39;/my-first-pwapp/images/wind.png&#39;
+];
+
+self.addEventListener(&#39;install&#39;, function(e) {
+  console.log(&#39;[ServiceWorker] Install&#39;);
+  e.waitUntil(
+    caches.open(cacheName).then(function(cache) {
+      console.log(&#39;[ServiceWorker] Caching app shell&#39;);
+      return cache.addAll(filesToCache);
+    })
+  );
+});
+</code></pre></div> <h2 id=52-serve-the-app-shell-from-the-cache>5.2 Serve the app shell from the cache<a class=headerlink href=#52-serve-the-app-shell-from-the-cache title="Permanent link">&para;</a></h2> <p>Service workers 可拦截网络请求，并在 service worker 内部处理。</p> <div class=highlight><pre><span></span><code>self.addEventListener(&#39;fetch&#39;, function(e) {
+  console.log(&#39;[ServiceWorker] Fetch&#39;, e.request.url);
+  e.respondWith(
+    caches.match(e.request).then(function(response) {
+      return response || fetch(e.request);
+    })
+  );
+});
+</code></pre></div> <h2 id=53-use-service-workers-to-cache-the-forecast-data>5.3 Use service workers to cache the forecast data<a class=headerlink href=#53-use-service-workers-to-cache-the-forecast-data title="Permanent link">&para;</a></h2> <p>使用 service worker 来 cache 天气预报的数据。</p> <p>选择正确的**缓存策略**很重要，The <a href=https://jakearchibald.com/2014/offline-cookbook/#cache-network-race>cache-first-then-network</a> strategy is ideal for our app. 这样能尽可能快的显示获取的天气数据，而且能网络返回最新数据时，第一时间更新。</p> <p>Cache-first-then-network 将触发两个异步请求，一个到缓存，一个到网络。</p> <h3 id=531>5.3.1 拦截请求，缓存响应<a class=headerlink href=#531 title="Permanent link">&para;</a></h3> <p>检查拦截到的请求，若请求的 URL 以 weather API 地址开头，则缓存响应的克隆，同时返回响应。</p> <div class=highlight><pre><span></span><code>var dataCacheName = &#39;weatherData-v1&#39;;
+
+// 修改 fetch event handler 如下, 将拦截到的请求分别处理
+self.addEventListener(&#39;fetch&#39;, function(e) {
+  console.log(&#39;[Service Worker] Fetch&#39;, e.request.url);
+  var dataUrl = &#39;https://query.yahooapis.com/v1/public/yql&#39;;
+  if (e.request.url.indexOf(dataUrl) &gt; -1) {
+    /*
+     * When the request URL contains dataUrl, the app is asking for fresh
+     * weather data. In this case, the service worker always goes to the
+     * network and then caches the response. This is called the &quot;Cache then
+     * network&quot; strategy:
+     * https://jakearchibald.com/2014/offline-cookbook/#cache-then-network
+     */
+    e.respondWith(
+      caches.open(dataCacheName).then(function(cache) {
+        return fetch(e.request).then(function(response){
+          cache.put(e.request.url, response.clone());
+          return response;
+        });
+      })
+    );
+  } else {
+    /*
+     * The app is asking for app shell files. In this scenario the app uses the
+     * &quot;Cache, falling back to the network&quot; offline strategy:
+     * https://jakearchibald.com/2014/offline-cookbook/#cache-falling-back-to-network
+     */
+    e.respondWith(
+      caches.match(e.request).then(function(response) {
+        return response || fetch(e.request);
+      })
+    );
+  }
+});
+</code></pre></div> <h3 id=532>5.3.2 从缓存中获取数据<a class=headerlink href=#532 title="Permanent link">&para;</a></h3> <p>app 发出俩请求，一个来自 cache，一个通过 XHR。若 cache 内有数据，则直接渲染；若 XHR 仍在继续，则渲染数据被更新为 weather API 直接获取的数据。</p> <p>在 <code>app.getForecast()</code> 内增加如下代码：</p> <div class=highlight><pre><span></span><code>    // TODO add cache logic here
+    if (&#39;caches&#39; in window) {
+      /*
+       * Check if the service worker has already cached this city&#39;s weather
+       * data. If the service worker has the data, then display the cached
+       * data while the app fetches the latest data.
+       */
+      caches.match(url).then(function(response) {
+        if (response) {
+          response.json().then(function updateFromCache(json) {
+            var results = json.query.results;
+            results.key = key;
+            results.label = label;
+            results.created = json.query.created;
+            app.updateForecastCard(results);
+          });
+        }
+      });
+    }
+</code></pre></div> <h3 id=534>5.3.4 测试验证<a class=headerlink href=#534 title="Permanent link">&para;</a></h3> <p>自此，PWApp 已能完全离线地址，地址见 <a href=https://silverbulllet.github.io/my-first-pwapp/ >https://silverbulllet.github.io/my-first-pwapp/</a> 。</p> <p>保存若干城市，点击刷新获取最新数据，置为离线，重载页面。</p> </article> </div> </div> </main> <!-- Application footer --> <footer class=md-footer> <!-- Link to previous and/or next page --> <div class=md-footer-nav> <nav class="md-footer-nav__inner md-grid" aria-label=Footer> <!-- Link to previous page --> <a href=../NodeJS%20%E5%B8%B8%E7%94%A8%E5%8C%85%E5%8F%8A%E5%8A%9F%E8%83%BD/ title="NodeJS 常用包及功能" class="md-footer-nav__link md-footer-nav__link--prev" rel=prev> <div class="md-footer-nav__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </div> <div class=md-footer-nav__title> <div class=md-ellipsis> <span class=md-footer-nav__direction> 上一页 </span> NodeJS 常用包及功能 </div> </div> </a> <!-- Link to next page --> <a href=../Vuejs%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%8A%EF%BC%89/ title="Vuejs 学习笔记之基础篇（上）" class="md-footer-nav__link md-footer-nav__link--next" rel=next> <div class=md-footer-nav__title> <div class=md-ellipsis> <span class=md-footer-nav__direction> 下一页 </span> Vuejs 学习笔记之基础篇（上） </div> </div> <div class="md-footer-nav__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg> </div> </a> </nav> </div> <!-- Further information --> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <!-- Copyright and theme information --> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; Chenleilei 2020 </div> For a Better World With No Bugs. </div> <!-- Social links --> </div> </div> </footer> </div> <script src=../../assets/javascripts/vendor.d710d30a.min.js></script> <script src=../../assets/javascripts/bundle.a14cc5fd.min.js></script><script id=__lang type=application/json>{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script> <script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.7a2ea5ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script> </body> </html>

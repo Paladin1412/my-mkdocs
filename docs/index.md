@@ -1,17 +1,25 @@
-# Welcome to MkDocs
+# Tannhäuser Gate 
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+> I Love to Sail Forbidden seas.
 
-## Commands
+## Education
+* Graduate from 西土城路10号院。
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## Technology Stack
+* Expert in Javascript.
+* Skilled in Design Pattern, Algorithm.
+* Adept at Vue/React, Webpack/Rollup/Lerna, etc.
+* Also Familiar with Kubernetes/Serverless, Java, C/C++, etc.
 
-## Project layout
+## Looking Forward
+* Front-End Architect
+* From Cloud Native to Serverless
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## Minor Characteristics
+* Talented in Languages, Natural Languages & Computer Languages alike.
+* Certificated in Englist & Japanese.
+* Love Football & Travelling. 
+* Good at Skiing.
+
+## No Bother
+![nothing](./assets/aiqiyi.png)

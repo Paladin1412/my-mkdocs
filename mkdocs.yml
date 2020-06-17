@@ -91,12 +91,55 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Learning Notes:
-    - Design Pattern: learning notes/1-design-pattern.md
+    - learning notes/Javascript 设计模式.md
+    - learning notes/Koa源码解析.md
+    - learning notes/Typescript 学习笔记.md
+    - learning notes/Webpack 5 探索.md
+    - learning notes/作用域链与执行上线文.md
+    - learning notes/原型链与继承.md
+    - learning notes/手撸 Promise.md
+    - learning notes/浏览器内核模块.md
+    - learning notes/闭包.md
   - Serverless:
     - Concept: serverless/concept.md
     - Openfaas: serverless/openfaas.md
     - Knative: serverless/knative.md
+    - 技术分享草稿: serverless/serverless-docs tmp notes.md 
   - Kubernetes:
-    - Etcd: kubernetes/1-etcd-deploy.md
-    - Serverless: kubernetes/2-serverless.md
+    - Etcd: kubernetes/etcd deploy.md
+    - kubeadm deployment: kubernetes/kubeadm-deployment.md
+    - Calico: kubernetes/init-master-for-calico.sh.md
+    - Kubernetes 插件: kubernetes/kube-addons.md
+    - Kubernetes 证书: kubernetes/kube-certs.md
+    - Istio: kubernetes/kube-istio.md
+    - prometheus: kubernetes/kube-prometheus.md
+    - storage: kubernetes/kube-storage.md
+    - openfaas: kubernetes/kube-openfaas.md
+    - openfaas-cloud: kubernetes/kube-openfaas-cloud.md
+    - tekton: kubernetes/kube-tekton.md
+    - knative: kubernetes/kube-knative.md
+  - History:
+    - history/Docker 学习笔记.md
+    - history/Electron 学习笔记.md
+    - history/JavaScript 之 Advanced Algorithms.md
+    - history/JavaScript 之二叉树.md
+    - history/JavaScript 之十大经典排序算法.md
+    - history/JavaScript 之图和图类算法.md
+    - history/JavaScript 事件模型.md
+    - history/Javascript 之重复一个字符串n次.md
+    - history/Javascript 学习之 Object.defineProperty().md
+    - history/Javascript 学习之 this.md
+    - history/Javascript 学习之深拷贝和浅拷贝.md
+    - history/Javascript 能力测评经典题.md
+    - history/Koa2+MongoDB 构建 Restful 后端.md
+    - history/NodeJS 常用包及功能.md
+    - history/PWA 之 Service Worker.md
+    - history/Vuejs 学习笔记之基础篇（上）.md
+    - history/Vuejs 学习笔记之基础篇（下）.md
+    - history/Vuejs 学习笔记之状态管理 Vuex.md
+    - history/Vuejs 学习笔记之过渡动画.md
+    - history/Web实用工具收集.md
+    - history/图解 HTTP 学习笔记.md
+    - history/基于 CodeIgniter 的运维监控系统实现.md
+    - history/基础知识杂记.md
   - About: about.md

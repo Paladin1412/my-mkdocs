@@ -1,0 +1,254 @@
+<!doctype html><html lang=zh class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="My Learning Notes"><link href=http://chenleileicode.com/history/%E5%9F%BA%E4%BA%8E%20CodeIgniter%20%E7%9A%84%E8%BF%90%E7%BB%B4%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/ rel=canonical><meta name=author content="Chen Leilei"><link rel="shortcut icon" href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.1.2, mkdocs-material-5.3.0"><title>基于 CodeIgniter 的运维监控系统实现 - Tannhäuser Gate</title><link rel=stylesheet href=../../assets/stylesheets/main.6e35a1a6.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.a46bcfb3.min.css><meta name=theme-color content=#009688><link href=https://fonts.gstatic.com rel=preconnect crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style></head> <body dir=ltr data-md-color-scheme=default data-md-color-primary=teal data-md-color-accent=teal> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#1 class=md-skip> 跳转至 </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header-nav md-grid" aria-label=Header> <a href=http://chenleileicode.com title="Tannhäuser Gate" class="md-header-nav__button md-logo" aria-label="Tannhäuser Gate"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 89 89"><path d="M3.136 17.387v42.932l42.932 21.467L3.136 17.387z"/><path fill-opacity=.5 d="M21.91 8l42.933 64.398-18.775 9.388L3.136 17.387 21.91 8z"/><path d="M67.535 17.387L40.273 35.543l21.878 32.818 5.384 2.691V17.387z"/><path fill-opacity=.25 d="M67.535 17.387v53.666l18.774-9.388V8l-18.774 9.387z"/></svg> </a> <label class="md-header-nav__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header-nav__title data-md-component=header-title> <div class=md-header-nav__ellipsis> <span class="md-header-nav__topic md-ellipsis"> Tannhäuser Gate </span> <span class="md-header-nav__topic md-ellipsis"> 基于 CodeIgniter 的运维监控系统实现 </span> </div> </div> <label class="md-header-nav__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=搜索 placeholder=搜索 autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear data-md-component=search-reset tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> <div class=md-header-nav__source> <a href=https://github.com/silverbulllet/my-mkdocs title="前往 GitHub 仓库" class=md-source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg> </div> <div class=md-source__repository> silverbulllet/my-mkdocs </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <nav class="md-tabs md-tabs--active" aria-label=Tabs data-md-component=tabs> <div class="md-tabs__inner md-grid"> <ul class=md-tabs__list> <li class=md-tabs__item> <a href=../.. class=md-tabs__link> Home </a> </li> <li class=md-tabs__item> <a href=../../learning%20notes/Javascript%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/ class=md-tabs__link> Learning Notes </a> </li> <li class=md-tabs__item> <a href=../../serverless/concept/ class=md-tabs__link> Serverless </a> </li> <li class=md-tabs__item> <a href=../../kubernetes/etcd%20deploy/ class=md-tabs__link> Kubernetes </a> </li> <li class=md-tabs__item> <a href=../Docker%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="md-tabs__link md-tabs__link--active"> History </a> </li> </ul> </div> </nav> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=http://chenleileicode.com title="Tannhäuser Gate" class="md-nav__button md-logo" aria-label="Tannhäuser Gate"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 89 89"><path d="M3.136 17.387v42.932l42.932 21.467L3.136 17.387z"/><path fill-opacity=.5 d="M21.91 8l42.933 64.398-18.775 9.388L3.136 17.387 21.91 8z"/><path d="M67.535 17.387L40.273 35.543l21.878 32.818 5.384 2.691V17.387z"/><path fill-opacity=.25 d="M67.535 17.387v53.666l18.774-9.388V8l-18.774 9.387z"/></svg> </a> Tannhäuser Gate </label> <div class=md-nav__source> <a href=https://github.com/silverbulllet/my-mkdocs title="前往 GitHub 仓库" class=md-source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg> </div> <div class=md-source__repository> silverbulllet/my-mkdocs </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. title=Home class=md-nav__link> Home </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-2 type=checkbox id=nav-2> <label class=md-nav__link for=nav-2> Learning Notes <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label="Learning Notes" data-md-level=1> <label class=md-nav__title for=nav-2> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Learning Notes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../learning%20notes/Javascript%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/ title="Javascript 设计模式" class=md-nav__link> Javascript 设计模式 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/Koa%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/ title=Koa源码解析 class=md-nav__link> Koa源码解析 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/Typescript%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ title="Typescript 学习笔记" class=md-nav__link> Typescript 学习笔记 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/Webpack%205%20%E6%8E%A2%E7%B4%A2/ title="Webpack 5 探索" class=md-nav__link> Webpack 5 探索 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%E4%B8%8E%E6%89%A7%E8%A1%8C%E4%B8%8A%E7%BA%BF%E6%96%87/ title=作用域链与执行上线文 class=md-nav__link> 作用域链与执行上线文 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%8E%E7%BB%A7%E6%89%BF/ title=原型链与继承 class=md-nav__link> 原型链与继承 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/%E6%89%8B%E6%92%B8%20Promise/ title="手撸 Promise" class=md-nav__link> 手撸 Promise </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97/ title=浏览器内核模块 class=md-nav__link> 浏览器内核模块 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/%E9%97%AD%E5%8C%85/ title=闭包 class=md-nav__link> 闭包 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-3 type=checkbox id=nav-3> <label class=md-nav__link for=nav-3> Serverless <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Serverless data-md-level=1> <label class=md-nav__title for=nav-3> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Serverless </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../serverless/concept/ title=Concept class=md-nav__link> Concept </a> </li> <li class=md-nav__item> <a href=../../serverless/openfaas/ title=Openfaas class=md-nav__link> Openfaas </a> </li> <li class=md-nav__item> <a href=../../serverless/knative/ title=Knative class=md-nav__link> Knative </a> </li> <li class=md-nav__item> <a href=../../serverless/serverless-docs%20tmp%20notes/ title=技术分享草稿 class=md-nav__link> 技术分享草稿 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-4 type=checkbox id=nav-4> <label class=md-nav__link for=nav-4> Kubernetes <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=nav-4> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../kubernetes/etcd%20deploy/ title=Etcd class=md-nav__link> Etcd </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kubeadm-deployment/ title="kubeadm deployment" class=md-nav__link> kubeadm deployment </a> </li> <li class=md-nav__item> <a href=../../kubernetes/init-master-for-calico.sh/ title=Calico class=md-nav__link> Calico </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-addons/ title="Kubernetes 插件" class=md-nav__link> Kubernetes 插件 </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-certs/ title="Kubernetes 证书" class=md-nav__link> Kubernetes 证书 </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-istio/ title=Istio class=md-nav__link> Istio </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-prometheus/ title=prometheus class=md-nav__link> prometheus </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-storage/ title=storage class=md-nav__link> storage </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-openfaas/ title=openfaas class=md-nav__link> openfaas </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-openfaas-cloud/ title=openfaas-cloud class=md-nav__link> openfaas-cloud </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-tekton/ title=tekton class=md-nav__link> tekton </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-knative/ title=knative class=md-nav__link> knative </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-5 type=checkbox id=nav-5 checked> <label class=md-nav__link for=nav-5> History <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=History data-md-level=1> <label class=md-nav__title for=nav-5> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> History </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../Docker%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ title=1.Docker概念 class=md-nav__link> 1.Docker概念 </a> </li> <li class=md-nav__item> <a href=../Electron%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ title="Electron 学习笔记" class=md-nav__link> Electron 学习笔记 </a> </li> <li class=md-nav__item> <a href=../JavaScript%20%E4%B9%8B%20Advanced%20Algorithms/ title="JavaScript 之 Advanced Algorithms" class=md-nav__link> JavaScript 之 Advanced Algorithms </a> </li> <li class=md-nav__item> <a href=../JavaScript%20%E4%B9%8B%E4%BA%8C%E5%8F%89%E6%A0%91/ title="JavaScript 之二叉树" class=md-nav__link> JavaScript 之二叉树 </a> </li> <li class=md-nav__item> <a href=../JavaScript%20%E4%B9%8B%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/ title="JavaScript 之十大经典排序算法" class=md-nav__link> JavaScript 之十大经典排序算法 </a> </li> <li class=md-nav__item> <a href=../JavaScript%20%E4%B9%8B%E5%9B%BE%E5%92%8C%E5%9B%BE%E7%B1%BB%E7%AE%97%E6%B3%95/ title="JavaScript 之图和图类算法" class=md-nav__link> JavaScript 之图和图类算法 </a> </li> <li class=md-nav__item> <a href=../JavaScript%20%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/ title="JavaScript 事件模型" class=md-nav__link> JavaScript 事件模型 </a> </li> <li class=md-nav__item> <a href=../Javascript%20%E4%B9%8B%E9%87%8D%E5%A4%8D%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2n%E6%AC%A1/ title="Javascript 之重复一个字符串n次" class=md-nav__link> Javascript 之重复一个字符串n次 </a> </li> <li class=md-nav__item> <a href=../Javascript%20%E5%AD%A6%E4%B9%A0%E4%B9%8B%20Object.defineProperty%28%29/ title="Javascript 学习之 Object.defineProperty()" class=md-nav__link> Javascript 学习之 Object.defineProperty() </a> </li> <li class=md-nav__item> <a href=../Javascript%20%E5%AD%A6%E4%B9%A0%E4%B9%8B%20this/ title="Javascript 学习之 this" class=md-nav__link> Javascript 学习之 this </a> </li> <li class=md-nav__item> <a href=../Javascript%20%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/ title="Javascript 学习之深拷贝和浅拷贝" class=md-nav__link> Javascript 学习之深拷贝和浅拷贝 </a> </li> <li class=md-nav__item> <a href=../Javascript%20%E8%83%BD%E5%8A%9B%E6%B5%8B%E8%AF%84%E7%BB%8F%E5%85%B8%E9%A2%98/ title="Javascript 能力测评经典题" class=md-nav__link> Javascript 能力测评经典题 </a> </li> <li class=md-nav__item> <a href=../Koa2%2BMongoDB%20%E6%9E%84%E5%BB%BA%20Restful%20%E5%90%8E%E7%AB%AF/ title="Koa2+MongoDB 构建 Restful 后端" class=md-nav__link> Koa2+MongoDB 构建 Restful 后端 </a> </li> <li class=md-nav__item> <a href=../NodeJS%20%E5%B8%B8%E7%94%A8%E5%8C%85%E5%8F%8A%E5%8A%9F%E8%83%BD/ title="NodeJS 常用包及功能" class=md-nav__link> NodeJS 常用包及功能 </a> </li> <li class=md-nav__item> <a href=../PWA%20%E4%B9%8B%20Service%20Worker/ title="PWA 之 Service Worker" class=md-nav__link> PWA 之 Service Worker </a> </li> <li class=md-nav__item> <a href=../Vuejs%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%8A%EF%BC%89/ title="Vuejs 学习笔记之基础篇（上）" class=md-nav__link> Vuejs 学习笔记之基础篇（上） </a> </li> <li class=md-nav__item> <a href=../Vuejs%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/ title="Vuejs 学习笔记之基础篇（下）" class=md-nav__link> Vuejs 学习笔记之基础篇（下） </a> </li> <li class=md-nav__item> <a href=../Vuejs%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%20Vuex/ title="Vuejs 学习笔记之状态管理 Vuex" class=md-nav__link> Vuejs 学习笔记之状态管理 Vuex </a> </li> <li class=md-nav__item> <a href=../Vuejs%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BF%87%E6%B8%A1%E5%8A%A8%E7%94%BB/ title="Vuejs 学习笔记之过渡动画" class=md-nav__link> Vuejs 学习笔记之过渡动画 </a> </li> <li class=md-nav__item> <a href=../Web%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/ title=Web实用工具收集 class=md-nav__link> Web实用工具收集 </a> </li> <li class=md-nav__item> <a href=../%E5%9B%BE%E8%A7%A3%20HTTP%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ title="图解 HTTP 学习笔记" class=md-nav__link> 图解 HTTP 学习笔记 </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> 基于 CodeIgniter 的运维监控系统实现 <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg> </span> </label> <a href=./ title="基于 CodeIgniter 的运维监控系统实现" class="md-nav__link md-nav__link--active"> 基于 CodeIgniter 的运维监控系统实现 </a> <nav class="md-nav md-nav--secondary" aria-label=目录> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> 目录 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=#12 class=md-nav__link> 1.2 总体设计 </a> <nav class=md-nav aria-label="1.2 总体设计"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_1 class=md-nav__link> 总体架构设计 </a> </li> <li class=md-nav__item> <a href=#_2 class=md-nav__link> 功能划分及处理流程 </a> </li> <li class=md-nav__item> <a href=#_3 class=md-nav__link> 系统功能全景图 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#13 class=md-nav__link> 1.3 项目文件结构 </a> </li> <li class=md-nav__item> <a href=#14 class=md-nav__link> 1.4 系统的数据流程 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%9D%82%E8%AE%B0/ title=基础知识杂记 class=md-nav__link> 基础知识杂记 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../../about/ title=About class=md-nav__link> About </a> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label=目录> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> 目录 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=#12 class=md-nav__link> 1.2 总体设计 </a> <nav class=md-nav aria-label="1.2 总体设计"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_1 class=md-nav__link> 总体架构设计 </a> </li> <li class=md-nav__item> <a href=#_2 class=md-nav__link> 功能划分及处理流程 </a> </li> <li class=md-nav__item> <a href=#_3 class=md-nav__link> 系统功能全景图 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#13 class=md-nav__link> 1.3 项目文件结构 </a> </li> <li class=md-nav__item> <a href=#14 class=md-nav__link> 1.4 系统的数据流程 </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content> <article class="md-content__inner md-typeset"> <blockquote> <p>CodeIgniter，后简称CI，是一个小巧而性能出众的PHP Web框架，典型的MVC架构，逻辑结构清晰、文档完整，有强大的类库支持，便于快速开发。</p> </blockquote> <p><br></p> <h1 id=1>1. 前言<a class=headerlink href=#1 title="Permanent link">&para;</a></h1> <p>本项目是某银行数据中心运维监控系统，由于受生产环境限制，故只能因地制宜，部署于Linux系统，服务器Apache2，数据库为Oracle，选择完全能满足需求的CodeIgniter框架。</p> <p>## 1.1 功能需求分析</p> <ul> <li>用户登录功能</li> <li>权限分组管理</li> <li>功能菜单管理</li> <li>系统各项指标监控</li> <li>主机资源查询</li> <li>设备维保信息管理</li> </ul> <h2 id=12>1.2 总体设计<a class=headerlink href=#12 title="Permanent link">&para;</a></h2> <h3 id=_1>总体架构设计<a class=headerlink href=#_1 title="Permanent link">&para;</a></h3> <p>采用传统的三层架构设计，自下而上依次为持久层、业务逻辑层和表示层。</p> <p><img alt=clip_image002 src=http://47.94.165.69:3031/upload/aaa/a21d07e67b9e7.png> </p> <ul> <li> <p><strong>持久层</strong>，采用Oracle数据库存储数据，通过轮询实时监控并获取各系统服务器的资源使用情况，将数据保存在数据库。</p> </li> <li> <p><strong>业务逻辑层</strong>，该系统的核心层，主要由部署于apache2的CI组成，包括数据模型创建，控制逻辑的设计，数据可视化的实现等。</p> </li> <li> <p><strong>表示层</strong>，通过浏览器向用户展示系统门户，完成系统与用户的各种交互功能。</p> </li> </ul> <p>​</p> <h3 id=_2>功能划分及处理流程<a class=headerlink href=#_2 title="Permanent link">&para;</a></h3> <ul> <li>登录</li> </ul> <p>接收POST请求，验证数据库的用户名与密码，保存在session里，然后执行后面操作。很常规，毋庸赘言。</p> <ul> <li>权限分组管理</li> </ul> <p>系统的功能菜单与用户组的对应关系，保存在数据库中，可以进行CRUD操作。用户登陆时会验证用户权限，确定所属分组，然后获取相应的功能菜单。权限之外的操作将会被拒绝。</p> <ul> <li>功能菜单管理</li> </ul> <p>系统功能菜单保存在数据库，用户可以依据自身权限获取相应的菜单。超级用户可以对用户菜单进行CRUD等操作。</p> <ul> <li>系统各项指标监控</li> </ul> <p>用户登陆后，依其权限获取已保存在数据库里的相应系统指标，CPU使用率、内存使用率、数据库使用情况等。</p> <ul> <li>主机资源查询</li> </ul> <p>用户可查询各系统的主机资源，包括主机名，主机用途，IP，操作系统等。</p> <ul> <li>设备维保信息管理</li> </ul> <p>包括维保信息的CRUD操作，并能EXCEL批量导入维保信息。</p> <h3 id=_3>系统功能全景图<a class=headerlink href=#_3 title="Permanent link">&para;</a></h3> <p><img alt=img src=http://47.94.165.69:3031/upload/aaa/91f7e9d521562.png> </p> <p>​</p> <h2 id=13>1.3 项目文件结构<a class=headerlink href=#13 title="Permanent link">&para;</a></h2> <p><img alt=dcys src=http://47.94.165.69:3031/upload/aaa/b8270c574b3bd.PNG> </p> <h2 id=14>1.4 系统的数据流程<a class=headerlink href=#14 title="Permanent link">&para;</a></h2> <p><img alt=appflowchart src=http://47.94.165.69:3031/upload/aaa/9ff3074c412ab.png> </p> <ol> <li>index.php 文件作为前端控制器，初始化运行 CodeIgniter 所需的基本资源；</li> <li>Router 检查 HTTP 请求，以确定如何处理该请求；</li> <li>如果存在缓存文件，将直接输出到浏览器，不用走下面正常的系统流程；</li> <li>在加载应用程序控制器之前，对 HTTP 请求以及任何用户提交的数据进行安全检查；</li> <li>控制器加载模型、核心类库、辅助函数以及其他所有处理请求所需的资源；</li> <li>最后一步，渲染视图并发送至浏览器，如果开启了缓存，视图被会先缓存起来用于 后续的请求。</li> </ol> <p><br></p> <h1 id=2>2. 核心架构及实现<a class=headerlink href=#2 title="Permanent link">&para;</a></h1> <p>CI 的开发基于 MVC（模型 - 视图 -控制器）设计模式。将应用程序的逻辑层和表现层分离开来。</p> <ul> <li> <p><strong>模型</strong> 代表你的数据结构。通常来说，模型类将包含帮助你对数据库进行增删改查的方法。</p> </li> <li> <p><strong>视图</strong> 是要展现给用户的信息。一个视图通常就是一个网页，但是在 CI 中， 一个视图也可以是一部分页面（例如页头、页尾），它也可以是一个 RSS 页面， 或其他任何类型的页面。</p> </li> <li> <p><strong>控制器</strong> 是模型、视图以及其他任何处理 HTTP 请求所必须的资源之间的中介，并生成网页。</p> </li> </ul> <p>​</p> <h2 id=21-model>2.1 Model层<a class=headerlink href=#21-model title="Permanent link">&para;</a></h2> <ul> <li><strong>BASE_Model</strong>，由于所有的数据模型都有对数据库的CRUD操作，这些操作仅仅在表名、查询条件、查询字段等参数方面有差别，因此创建一个BASE_Model作为父辈模型，供其它模型继承。</li> </ul> <div class=highlight><pre><span></span><code>class BASE_Model extends CI_Model{
+    protected $table_name = &#39;&#39;;
+
+    function __construct(){
+        $this-&gt;table_name = $this-&gt;table_name;
+        parent::__construct();
+    }
+
+    /**
+     * 执行sql查询
+     * @param $where        查询条件[例`name`=&#39;$name&#39;]
+     * @param $data         需要查询的字段值[例`name`,`gender`,`birthday`]
+     * @param $limit        返回结果范围[例：10或10,10 默认为空]
+     * @param $order        排序方式    [默认按数据库默认方式排序]
+     * @param $group        分组方式    [默认为空]
+     * @param $key          返回数组按键名排序
+     * @return array        查询结果集数组
+     */
+    final public function select($where = &#39;&#39;, $data = &#39;*&#39;, $limit = &#39;&#39;, $order = &#39;&#39;, $group = &#39;&#39;, $key=&#39;&#39;) {
+      // ...
+    }
+
+    /**
+     * 执行插入操作insert
+     * @param $data 
+     */
+    final public function insert($data){
+        return $this-&gt;db-&gt;insert($this-&gt;table_name,$data);
+    }
+
+    /**
+     * 批量insert
+     * @param $data 批量数组
+     */
+    final public function insert_batch($data){
+        return $this-&gt;db-&gt;insert_batch($this-&gt;table_name,$data);
+    }
+    /* 
+    ... 
+    */
+}
+</code></pre></div> <ul> <li><strong>用户模型</strong>，Oracle数据库中的用户表如下所列。</li> </ul> <div class=highlight><pre><span></span><code>CREATE TABLE `dc_sys_member` (
+  `user_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `username` char(100) NOT NULL,
+  `password` char(32) NOT NULL,
+  `group_id` tinyint(3) unsigned DEFAULT &#39;0&#39;,
+  `avatar` varchar(50) DEFAULT NULL,
+  `last_login_ip` char(15) DEFAULT NULL,
+  `last_login_time` datetime DEFAULT NULL,
+  `encrypt` varchar(50) DEFAULT NULL,
+  `fullname` varchar(50) DEFAULT NULL,
+  `qq` varchar(50) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `mobile` varchar(50) DEFAULT NULL,
+  `sex` varchar(2) DEFAULT &#39;0&#39;,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `username` (`username`(15)),
+  KEY `groupID` (`group_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+</code></pre></div> <p>​ 根据用户表创建数据模型。</p> <div class=highlight><pre><span></span><code>class Member_model extends BASE_Model{
+  public function __construct() {
+    $this-&gt;table_name = &#39;DC_SYS_MEMBER&#39;;
+    parent::__construct();
+  }
+  /* 
+  ... 
+  */
+}
+</code></pre></div> <ul> <li><strong>用户组模型</strong>，给用户按权限角色分组，用户组表的字段如下。</li> </ul> <div class=highlight><pre><span></span><code>CREATE TABLE `dc_sys_member_role` (
+  `role_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT &#39;组ID&#39;,
+  `role_name` varchar(45) NOT NULL DEFAULT &#39;&#39; COMMENT &#39;组名&#39;,
+  `type_id` int(10) unsigned NOT NULL DEFAULT &#39;0&#39; COMMENT &#39;保留&#39;,
+  `description` varchar(200) DEFAULT NULL COMMENT &#39;描述&#39;,
+  PRIMARY KEY (`role_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED;
+</code></pre></div> <p>​ 创建用户组模型。</p> <div class=highlight><pre><span></span><code>class Member_role_model extends BASE_Model{
+  public function __construct() {
+    $this-&gt;table_name = &#39;DC_SYS_MEMBER_ROLE&#39;;
+    parent::__construct();
+  }
+  /* 
+  ... 
+  */
+}
+</code></pre></div> <ul> <li><strong>功能菜单模型</strong>，菜单表的字段如下。字段中，CI 的 URI 路由由<code>controller/folder/method</code>来唯一确定；每条菜单entry的<code>arr_parentid</code>字段，从根开始依次保存其所有祖先的<code>menu_id</code>。</li> </ul> <div class=highlight><pre><span></span><code>CREATE TABLE `dc_sys_module_menu` (
+  `menu_id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `menu_name` char(40) NOT NULL DEFAULT &#39;&#39;,
+  `parent_id` smallint(6) NOT NULL DEFAULT &#39;0&#39;,
+  `controller` varchar(50) DEFAULT NULL,
+  `folder` varchar(50) DEFAULT NULL,
+  `arr_parentid` varchar(250) DEFAULT NULL,
+  `arr_childid` varchar(250) DEFAULT NULL,
+  `is_parent` tinyint(1) DEFAULT &#39;0&#39;,
+  PRIMARY KEY (`menu_id`),
+  KEY `parent_id` (`parent_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
+</code></pre></div> <p>​ 创建功能菜单模型。</p> <div class=highlight><pre><span></span><code>class Member_role_model extends BASE_Model{
+  public function __construct() {
+    $this-&gt;table_name = &#39;DC_SYS_MEMBER_ROLE&#39;;
+    parent::__construct();
+  }
+  /* 
+  ... 
+  */
+}
+</code></pre></div> <ul> <li><strong>用户组-菜单关系模型</strong>，用户组-菜单关系表的字段如下。</li> </ul> <div class=highlight><pre><span></span><code>CREATE TABLE `dc_sys_member_role_priv` (
+  `role_id` tinyint(3) unsigned NOT NULL DEFAULT &#39;0&#39;,
+  `folder` varchar(50) NOT NULL DEFAULT &#39;&#39;,
+  `controller` varchar(50) NOT NULL DEFAULT &#39;&#39;,
+  `method` varchar(50) NOT NULL DEFAULT &#39;&#39;,
+  `data` varchar(50) NOT NULL DEFAULT &#39;&#39;,
+  `priv_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `menu_id` int(11) DEFAULT &#39;0&#39;,
+  PRIMARY KEY (`priv_id`),
+  KEY `role_id` (`role_id`,`folder`,`controller`,`method`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+</code></pre></div> <p>​ 创建用户组-菜单关系模型。</p> <div class=highlight><pre><span></span><code>class Member_role_priv_model extends BASE_Model{
+  public function __construct() {
+    $this-&gt;table_name = &#39;DC_SYS_MEMBER_ROLE_PRIV&#39;;
+    parent::__construct();
+  }
+  /* 
+  ... 
+  */
+}
+</code></pre></div> <ul> <li><strong>其他功能模型</strong>，其他功能于系统的主要框架关联性不大，可按需扩展，不再赘述。</li> </ul> <h2 id=22-controller>2.2 Controller层<a class=headerlink href=#22-controller title="Permanent link">&para;</a></h2> <ul> <li><strong>BASE_Controller</strong>，创建一个父辈控制器，包含一些所有功能模块都共有的<code>method</code>，例如通过session查看登陆状态，检查用户权限，获取功能菜单，显示全局提示，生成视图等。</li> </ul> <div class=highlight><pre><span></span><code>class BASE_Controller extends CI_Controller{
+
+  function __construct(){
+    parent::__construct();
+    $this-&gt;check_member();
+    $this-&gt;check_priv();
+  }
+
+  /*
+   * 判断用户是否已经登陆
+   */
+   protected function check_member() {
+    $_datainfo = $this-&gt;Member_model-&gt;get_one(array(&#39;USER_ID&#39;=&gt;$this-&gt;user_id,&#39;USERNAME&#39;=&gt;$this-&gt;user_name));
+    if(!($this-&gt;page_data[&#39;folder_name&#39;]==&#39;adminpanel&#39;&amp;&amp;$this-&gt;page_data[&#39;controller_name&#39;]==&#39;manage&#39;&amp;&amp;$this-&gt;page_data[&#39;method_name&#39;]==&#39;login&#39;)&amp;&amp;!$_datainfo){
+        redirect(site_url(&#39;adminpanel/manage/login&#39;));
+        exit(0);
+    }
+   }
+
+  /*
+   * 检查用户权限
+   */
+  protected function check_priv(){
+    $r =$this-&gt;Member_role_priv_model-&gt;get_one(array(&#39;METHOD&#39;=&gt;$this-&gt;page_data[&#39;method_name&#39;],&#39;CONTROLLER&#39;=&gt;$this-&gt;page_data[&#39;controller_name&#39;] ,&#39;FOLDER&#39;=&gt;$this-&gt;page_data[&#39;folder_name&#39;],&#39;ROLE_ID&#39;=&gt;$this-&gt;group_id ));
+    if(!$r) exit(&quot;您没有权限操作该项&quot;);
+  }
+  /* 
+  ... 
+  */
+  /**
+   * view 自动模板调用
+   */
+  protected function view($view_file,$sub_page_data=NULL){
+    $this-&gt;load-&gt;view(&quot;header&quot;);
+    $this-&gt;load-&gt;view($view_file, $sub_page_data);
+    $this-&gt;load-&gt;view(&quot;footer&quot;);
+  }
+}
+</code></pre></div> <ul> <li><strong>其他控制器</strong>，其他控制器皆继承自<code>BASE_Controller</code>，可按照不同的功能需求创建，每一个<code>method</code>，对应一个菜单entry，其中包含<code>controller/folder/method</code>的唯一路由。</li> </ul> <p>​</p> <h2 id=23-view>2.3 View层<a class=headerlink href=#23-view title="Permanent link">&para;</a></h2> <p>一个视图基本上就是一个网页或网页的一部分，根据路由调用Controller里的对应method，会加载view模板，并将从服务器端得到的数据渲染在该模板内。通常会对一个网页进行切割，方便共用Header，Footer，Sidebar，Breadcrumb，Nav等 。</p> <p><img alt=dcsys-1 src=http://47.94.165.69:3031/upload/aaa/a65cc5a169fe2.PNG> </p> <p><img alt=dcys-2 src=http://47.94.165.69:3031/upload/aaa/c48defd3083b5.PNG> </p> <p><img alt=dcys-3 src=http://47.94.165.69:3031/upload/aaa/83132a41aa451.999Z%20copy> </p> <p><img alt=dcys-4 src=http://47.94.165.69:3031/upload/aaa/f780a55ca6578.PNG> </p> <p><img alt=dcys-4 src=http://47.94.165.69:3031/upload/aaa/482632cc54c84.741Z%20copy> </p> <h2 id=24-libraries>2.4 Libraries 类库<a class=headerlink href=#24-libraries title="Permanent link">&para;</a></h2> <p>自定的功能函数库，方便在某些methods里调用。例如Menu_tree，作用是根据用户权限，获取用户的功能菜单树。</p> <div class=highlight><pre><span></span><code>Class Menu_tree {
+
+  //把tree展开成一维数组便于view，见 generate_treeview_arr
+  public $treeview_arr = array();
+  /**
+  *根据节点从root开始建造目录树
+  * $result 必须 menu_id ASC
+  */
+  public function build($result){
+    $menu=array();
+    foreach ($result as $r) {
+      $menu_id = $r[&quot;MENU_ID&quot;];
+      $path = explode(&quot;,&quot;,$r[&quot;ARR_PARENTID&quot;]);
+      $obj_r = (object)null;
+      $obj_r-&gt;item = $r;
+      if($r[&quot;IS_PARENT&quot;]) $obj_r-&gt;children = array();
+      $tmp=&amp;$menu;
+      for($i=1;$i&lt;count($path);$i++){
+        $tmp=&amp;$tmp[$path[$i]]-&gt;children;
+      }
+      $tmp[$menu_id] = $obj_r;
+    }
+    return $menu;
+  }
+
+ /**
+ *  把tree展开成一维数组便于view
+ *  展开之后 保存在 treeview_arr
+ */
+  public function generate_treeview_arr($menu_tree){
+    foreach ($menu_tree as $value) {
+      $obj=(object)null;
+      $nbsp=&quot;&quot;;
+      for ($i=1; $i&lt;count(explode(&quot;,&quot;,$value-&gt;item[&quot;ARR_PARENTID&quot;])); $i++) 
+        $nbsp.= &quot;&amp;nbsp;&lt;i class=&#39;fa fa-i-cursor&#39;&gt;&amp;nbsp;&lt;/i&gt;&lt;i class=&#39;fa fa-ellipsis-h&#39;&gt;&lt;/i&gt;&quot;;
+      $obj-&gt;nbsp=$nbsp.&quot;&amp;nbsp;&quot;;
+      if(property_exists((object)$value-&gt;item,&quot;CHECKED&quot;)) 
+        $obj-&gt;checked = $value-&gt;item[&quot;CHECKED&quot;];
+      $obj-&gt;val = $value-&gt;item;
+      $this-&gt;treeview_arr[] = $obj;
+      if(property_exists($value,&quot;children&quot;)){
+        $this-&gt;generate_treeview_arr($value-&gt;children);
+      }
+    }
+  }
+}
+</code></pre></div> <p><br></p> <h2 id=25-helpers>2.5 Helpers 辅助函数<a class=headerlink href=#25-helpers title="Permanent link">&para;</a></h2> <p>包含了自定义的全局functions，例如下面两个。</p> <div class=highlight><pre><span></span><code>/**
+* 安全过滤函数
+*/
+if(! function_exists(&#39;safe_replace&#39;)){
+  function _safe_replace($string) {
+    $string = str_replace(&#39;%20&#39;,&#39;&#39;,$string);
+    $string = str_replace(&#39;%27&#39;,&#39;&#39;,$string);
+    $string = str_replace(&#39;%2527&#39;,&#39;&#39;,$string);
+    $string = str_replace(&#39;*&#39;,&#39;&#39;,$string);
+    $string = str_replace(&#39;&quot;&#39;,&#39;&amp;quot;&#39;,$string);
+    $string = str_replace(&quot;&#39;&quot;,&#39;&#39;,$string);
+    $string = str_replace(&#39;&quot;&#39;,&#39;&#39;,$string);
+    $string = str_replace(&#39;;&#39;,&#39;&#39;,$string);
+    $string = str_replace(&#39;&lt;&#39;,&#39;&amp;lt;&#39;,$string);
+    $string = str_replace(&#39;&gt;&#39;,&#39;&amp;gt;&#39;,$string);
+    $string = str_replace(&quot;{&quot;,&#39;&#39;,$string);
+    $string = str_replace(&#39;}&#39;,&#39;&#39;,$string);
+    return $string;
+  }
+
+  function safe_replace($string) {
+    if(!is_array($string)) return _safe_replace($string);
+    foreach($string as $key =&gt; $val) $string[$key] = _safe_replace($val);
+    return $string;
+  }
+}
+
+/**
+* 判断是不是ajax请求
+*/
+if(!function_exists(&#39;is_ajax_request&#39;)){
+  function is_ajax_request(){
+    return isset($_SERVER[&#39;HTTP_X_REQUESTED_WITH&#39;]) &amp;&amp; $_SERVER[&#39;HTTP_X_REQUESTED_WITH&#39;] =&#39;xmlhttprequest&#39;;
+  }
+}
+</code></pre></div> <p><br></p> <h1 id=3>3. 仍需改进之处<a class=headerlink href=#3 title="Permanent link">&para;</a></h1> <ul> <li>主页需要重新设计</li> <li>新增和编辑功能菜单可以做得更细致、更灵活</li> <li>系统指标和主机资源的查询SQL优化</li> <li>Web前端的图形化展示可以更丰富更友好</li> </ul> </article> </div> </div> </main> <!-- Application footer --> <footer class=md-footer> <!-- Link to previous and/or next page --> <div class=md-footer-nav> <nav class="md-footer-nav__inner md-grid" aria-label=Footer> <!-- Link to previous page --> <a href=../%E5%9B%BE%E8%A7%A3%20HTTP%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ title="图解 HTTP 学习笔记" class="md-footer-nav__link md-footer-nav__link--prev" rel=prev> <div class="md-footer-nav__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </div> <div class=md-footer-nav__title> <div class=md-ellipsis> <span class=md-footer-nav__direction> 上一页 </span> 图解 HTTP 学习笔记 </div> </div> </a> <!-- Link to next page --> <a href=../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%9D%82%E8%AE%B0/ title=基础知识杂记 class="md-footer-nav__link md-footer-nav__link--next" rel=next> <div class=md-footer-nav__title> <div class=md-ellipsis> <span class=md-footer-nav__direction> 下一页 </span> 基础知识杂记 </div> </div> <div class="md-footer-nav__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg> </div> </a> </nav> </div> <!-- Further information --> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <!-- Copyright and theme information --> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; Chenleilei 2020 </div> For a Better World With No Bugs. </div> <!-- Social links --> </div> </div> </footer> </div> <script src=../../assets/javascripts/vendor.d710d30a.min.js></script> <script src=../../assets/javascripts/bundle.a14cc5fd.min.js></script><script id=__lang type=application/json>{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script> <script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.7a2ea5ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script> </body> </html>

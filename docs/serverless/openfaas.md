@@ -1,5 +1,7 @@
-# 目录
 
+# OpenFaas
+
+## 内容导航
 - OpenFaaS Stack 
 - HightLights
 - OpenFaaS Architecture
@@ -16,9 +18,8 @@
 - 总结
 - Landscape 2.0
 
-# 正文
 
-## OpenFaaS Stack 
+##　OpenFaaS Stack 
 
 ![a](http://pic3.iqiyipic.com/common/ivp/20200426/4eccf9f385e544d8bc0514afac30c8c8.png)  
 

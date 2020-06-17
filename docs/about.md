@@ -1,66 +1,94 @@
-> 2020-04-04
+# 姑妄听之
 
-```
-pip3 install --trusted-host pypi.douban.com -i http://pypi.douban.com/simple/  mkdocs mkdocs-material mkdocs-minify-plugin 
-```
+> 以下纯属胡说八道，姑妄言之，姑妄听之。 -- 2020-04-04
 
-# 标题
+2020-04-04
 
-## 标题一
+这些年，我学习技术的路线走了不少弯路，可以用“不务正业”来形容。
 
-Material for MkDocs provides the following template blocks:
-
-| Block name   | Wrapped contents                                |
-| ------------ | ----------------------------------------------- |
-| `analytics`  | Wraps the Google Analytics integration          |
-| `announce`   | Wraps the Announcement bar                      |
-| `config`     | Wraps the JavaScript application config         |
-| `content`    | Wraps the main content                          |
-| `disqus`     | Wraps the disqus integration                    |
-| `extrahead`  | Empty block to define additional meta tags      |
-| `fonts`      | Wraps the webfont definitions                   |
-| `footer`     | Wraps the footer with navigation and copyright  |
-| `header`     | Wraps the fixed header bar                      |
-| `hero`       | Wraps the hero teaser (if available)            |
-| `htmltitle`  | Wraps the `<title>` tag                         |
-| `libs`       | Wraps the JavaScript libraries (header)         |
-| `scripts`    | Wraps the JavaScript application (footer)       |
-| `source`     | Wraps the linked source files                   |
-| `site_meta`  | Wraps the meta tags in the document head        |
-| `site_nav`   | Wraps the site navigation and table of contents |
-| `styles`     | Wraps the stylesheets (also extra sources)      |
-| `tabs`       | Wraps the tabs navigation (if available)        |
+## 我的大学
+在读研阶段，考进了我们学校最难进的实验室之一，嵌入式系统实验室；然鹅，毕业录文却是大数据挖掘算法优化，简直“不务正业”。整个实验室就我一人做这个研究，从零开始，顾盼无人，导师也不怎么能帮上忙；其难度可想而知，地狱模式毕业。
 
 
+## 邮储生涯
+毕业后第一份工作，去了某行数据中心。数据中心嘛，顾名思义，当然是大数据相关研发啦，初出茅庐的我可以在此大展宏图，汲取不少实战经验；面试时，我侃侃而谈大数据，一排面试官听得面带喜色，频频点头；他们不发言，我也不知深浅，反正那反馈啊，让我觉得良禽择木，所托非人。
 
-## 标题二
+然鹅，进去之后，我开始自闭。哪里是什么大数据研发，系统及数据库运维，简直像雪国列车上的锅炉房。
+
+有点抵触日常琐事，所以每天工作之余，自学开发，躬耕不辍，这就所谓的“不务正业”。Javascript 语法犀牛书看了两版，语言精粹，设计模式看了不少，临走前还留下了一个DevOps系统。
+
+谈到想跳槽，周围的声音大多都是，这里工作舒服，待遇还不错，而且你技术也废了，出去也拿不到好的offer。
+
+后来我去了爱奇艺，声音变成，你有种，是数据中心自成立以来第一个从这里走出做开发的。我谦虚回答，我不是有种，是有实力。
 
 
-``` sh
-.
-├─ assets/
-│  ├─ images/                          # Images and icons
-│  ├─ javascripts/                     # JavaScript
-│  └─ stylesheets/                     # Stylesheets
-├─ partials/
-│  ├─ integrations/                    # 3rd-party integrations
-│  ├─ language/                        # Localized languages
-│  ├─ footer.html                      # Footer bar
-│  ├─ header.html                      # Header bar
-│  ├─ hero.html                        # Hero teaser
-│  ├─ language.html                    # Localized labels
-│  ├─ nav-item.html                    # Main navigation item
-│  ├─ nav.html                         # Main navigation
-│  ├─ search.html                      # Search box
-│  ├─ social.html                      # Social links
-│  ├─ source-date.html                 # Last updated date
-│  ├─ source-link.html                 # Link to source file
-│  ├─ source.html                      # Repository information
-│  ├─ tabs-item.html                   # Tabs navigation item
-│  ├─ tabs.html                        # Tabs navigation
-│  ├─ toc-item.html                    # Table of contents item
-│  └─ toc.html                         # Table of contents
-├─ 404.html                            # 404 error page
-├─ base.html                           # Base template
-└─ main.html                           # Default page
-```
+## 爱奇艺
+在爱奇艺工作伊始，能学到互联网运行方式及团队合作模式，确实高效，那会儿我也快速成长，深谙我心。待到业务熟悉之后，任务就多了，每天加班到很晚，都是每天重复，没时间充电，觉得某些理论知识方面的技术甚至有些倒退。
+
+### 某个项目
+后来接了一个项目互动视频制作平台（IVP）。领导问我想不想做，我兴趣昂然，因为它的创新性和挑战性，可以把我从循规蹈矩的日常搬砖中解放出来；但后来让我萌生退意的是，整个产品的规划及功能迭代，没进入一个良性循环。
+
+这个平台，是我和同桌一起封闭开发了大半年，每天加班的成果。第一版上线之后，他说入职以来从来没这么累过，以致于验收通过后，有种产后抑郁症的感觉。
+
+可以多聊聊这个产品，毕竟不少心血投入其中。我倆的分工是，他负责用户鉴权，项目草稿保存回显，素材上传及管理，以及后台接口调用等；我负责流程图的建模及核心算法实现，流程图交互，配置区域逻辑，及播放脚本生成。
+
+如此分工，是为了节省时间：他入职较早，对公司业务接口熟悉；而我，计算机专业科班出身，算法基础不赖。
+
+流程图呢，是整个平台的核心。其职责很简单，就如图灵所说，输入处理输出。输入，用户的交互行为及配置的数据；处理，把这些行为和数据进行抽象，建模，变成计算机理解的代码；输出，播放脚本。
+
+最开始我们做过一个对内版，供编辑制作互动视频使用。能处理简单的交互，能可视化流程，能生产脚本，功能比较简单，但有个最大的硬伤，流程图节点的排列不灵活。
+
+### 重构
+后来要做对外版，也就是当前的互动视频平台，显然沿用之前的版本，无法满足用户更多个性化的需求。经过两天的调研，我发现并没特别好的工具完美契合目前产品提出的需求，果断决定自己来实现核心的算法。
+
+算法核心思想及主要数据结构：
+
+1. 一张复杂的有向图，承载流程图所有的配置信息
+2. 一棵树，标记流程图中节点的层次和计算节点位置
+3. 把图转化为树
+4. 从树上获取绘制图的数据
+5. 生成绘制图，实现可视化及交互
+
+大道至简，计算机的本质不外如是：输入处理输出。
+
+怎么实现这个算法，利用了何种设计模式，如何工程化，我在开发文档里Wiki里有详细说明。
+
+技术层面有过什么问题呢，时间紧迫，我力排众议，进行过一次大面积的重构。那段时间我压力很大，产品经理，项目经理，还有大领导给我施压，说把重构放在工作之余，限一次需求上线时再使用重构之后的版本。只有小领导支持我，给了我信任，帮我分担了一部分压力，让我延期两天上线了重构之后的版本。
+
+后来回想总结，根据敏捷开发里的 XP编程法则，关于重构这一条，把每次一增加需求，当作一次重构的机会。
+
+### 自我总结
+末了，怎么评价它呢，我想了想：它是一个好的作品，但非一个好的产品。
+
+“这是一个不错的作品”，为什么这么说呢。因为我靠它拿到了一个“大神”的称号， 不是有个小迷弟或小迷妹夸你就能拿的，只有拿A++ 绩效的人，才有此称号。当前这个团队里我入职最晚，有此称号的独我一人。这是我的收获。
+
+“并非一个好的产品”，这又是啥意思。因为我最初接手这个产品时，野心远不止如此，是抱着一颗打造行业顶尖的互动视频制作平台的心去做。结果，在开发中得到支持，产品的推广及公司对其定位，并不尽如人意。究其原因，很多时候，你作为一个的码农，并没那么大的话语权。这是我的无奈。
+
+### I Love to Sail Forbidden Seas.
+有一次领导找我单聊学习曲线聊技术栈，问我工作感受及职业规划。我说，感觉每天都在忙不迭的拼装功能和联调接口；而计算机是一颗参天大树，我只在某一枝桠。
+
+我想知道，这棵树长啥样。
+
+所以，就算日常工作繁忙如斯，我依旧挤出时间"不务正业"。
+
+
+## Why another job.
+但是，我的人生中总有这个么一个但是。
+
+感觉参加工作就是我人生的滑铁卢，上学那会儿品学兼优，应对自如，轻松随意，everything seems Very Promising.
+
+但工作之后，十多年的计算机学习及实战经验，竟然吵架还吵不过一个待毕业的产品实习生妹纸。
+
+
+有个同学说：面试就是别人认可自己的自圆其说。
+
+就这么简单。
+
+
+就这么简单？
+
+就像上学那会儿，图灵告诉我：**计算机的本质就是，输入处理输出**。
+
+同样，就这么简单。然后骗我入坑，当了程序猿。
+
+鬼知道，这些年，我还有大多数程序员在 “处理” 这个阶段，经历了什么。

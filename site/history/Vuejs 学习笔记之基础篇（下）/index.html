@@ -1,0 +1,165 @@
+<!doctype html><html lang=zh class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="My Learning Notes"><link href=http://chenleileicode.com/history/Vuejs%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/ rel=canonical><meta name=author content="Chen Leilei"><link rel="shortcut icon" href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.1.2, mkdocs-material-5.3.0"><title>Vuejs 学习笔记之基础篇（下） - Tannhäuser Gate</title><link rel=stylesheet href=../../assets/stylesheets/main.6e35a1a6.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.a46bcfb3.min.css><meta name=theme-color content=#009688><link href=https://fonts.gstatic.com rel=preconnect crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style></head> <body dir=ltr data-md-color-scheme=default data-md-color-primary=teal data-md-color-accent=teal> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#5 class=md-skip> 跳转至 </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header-nav md-grid" aria-label=Header> <a href=http://chenleileicode.com title="Tannhäuser Gate" class="md-header-nav__button md-logo" aria-label="Tannhäuser Gate"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 89 89"><path d="M3.136 17.387v42.932l42.932 21.467L3.136 17.387z"/><path fill-opacity=.5 d="M21.91 8l42.933 64.398-18.775 9.388L3.136 17.387 21.91 8z"/><path d="M67.535 17.387L40.273 35.543l21.878 32.818 5.384 2.691V17.387z"/><path fill-opacity=.25 d="M67.535 17.387v53.666l18.774-9.388V8l-18.774 9.387z"/></svg> </a> <label class="md-header-nav__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header-nav__title data-md-component=header-title> <div class=md-header-nav__ellipsis> <span class="md-header-nav__topic md-ellipsis"> Tannhäuser Gate </span> <span class="md-header-nav__topic md-ellipsis"> Vuejs 学习笔记之基础篇（下） </span> </div> </div> <label class="md-header-nav__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=搜索 placeholder=搜索 autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear data-md-component=search-reset tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> <div class=md-header-nav__source> <a href=https://github.com/silverbulllet/my-mkdocs title="前往 GitHub 仓库" class=md-source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg> </div> <div class=md-source__repository> silverbulllet/my-mkdocs </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <nav class="md-tabs md-tabs--active" aria-label=Tabs data-md-component=tabs> <div class="md-tabs__inner md-grid"> <ul class=md-tabs__list> <li class=md-tabs__item> <a href=../.. class=md-tabs__link> Home </a> </li> <li class=md-tabs__item> <a href=../../learning%20notes/Javascript%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/ class=md-tabs__link> Learning Notes </a> </li> <li class=md-tabs__item> <a href=../../serverless/concept/ class=md-tabs__link> Serverless </a> </li> <li class=md-tabs__item> <a href=../../kubernetes/etcd%20deploy/ class=md-tabs__link> Kubernetes </a> </li> <li class=md-tabs__item> <a href=../Docker%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="md-tabs__link md-tabs__link--active"> History </a> </li> </ul> </div> </nav> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=http://chenleileicode.com title="Tannhäuser Gate" class="md-nav__button md-logo" aria-label="Tannhäuser Gate"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 89 89"><path d="M3.136 17.387v42.932l42.932 21.467L3.136 17.387z"/><path fill-opacity=.5 d="M21.91 8l42.933 64.398-18.775 9.388L3.136 17.387 21.91 8z"/><path d="M67.535 17.387L40.273 35.543l21.878 32.818 5.384 2.691V17.387z"/><path fill-opacity=.25 d="M67.535 17.387v53.666l18.774-9.388V8l-18.774 9.387z"/></svg> </a> Tannhäuser Gate </label> <div class=md-nav__source> <a href=https://github.com/silverbulllet/my-mkdocs title="前往 GitHub 仓库" class=md-source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg> </div> <div class=md-source__repository> silverbulllet/my-mkdocs </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. title=Home class=md-nav__link> Home </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-2 type=checkbox id=nav-2> <label class=md-nav__link for=nav-2> Learning Notes <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label="Learning Notes" data-md-level=1> <label class=md-nav__title for=nav-2> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Learning Notes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../learning%20notes/Javascript%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/ title="Javascript 设计模式" class=md-nav__link> Javascript 设计模式 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/Koa%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/ title=Koa源码解析 class=md-nav__link> Koa源码解析 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/Typescript%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ title="Typescript 学习笔记" class=md-nav__link> Typescript 学习笔记 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/Webpack%205%20%E6%8E%A2%E7%B4%A2/ title="Webpack 5 探索" class=md-nav__link> Webpack 5 探索 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%E4%B8%8E%E6%89%A7%E8%A1%8C%E4%B8%8A%E7%BA%BF%E6%96%87/ title=作用域链与执行上线文 class=md-nav__link> 作用域链与执行上线文 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%8E%E7%BB%A7%E6%89%BF/ title=原型链与继承 class=md-nav__link> 原型链与继承 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/%E6%89%8B%E6%92%B8%20Promise/ title="手撸 Promise" class=md-nav__link> 手撸 Promise </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97/ title=浏览器内核模块 class=md-nav__link> 浏览器内核模块 </a> </li> <li class=md-nav__item> <a href=../../learning%20notes/%E9%97%AD%E5%8C%85/ title=闭包 class=md-nav__link> 闭包 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-3 type=checkbox id=nav-3> <label class=md-nav__link for=nav-3> Serverless <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Serverless data-md-level=1> <label class=md-nav__title for=nav-3> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Serverless </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../serverless/concept/ title=Concept class=md-nav__link> Concept </a> </li> <li class=md-nav__item> <a href=../../serverless/openfaas/ title=Openfaas class=md-nav__link> Openfaas </a> </li> <li class=md-nav__item> <a href=../../serverless/knative/ title=Knative class=md-nav__link> Knative </a> </li> <li class=md-nav__item> <a href=../../serverless/serverless-docs%20tmp%20notes/ title=技术分享草稿 class=md-nav__link> 技术分享草稿 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-4 type=checkbox id=nav-4> <label class=md-nav__link for=nav-4> Kubernetes <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=nav-4> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../kubernetes/etcd%20deploy/ title=Etcd class=md-nav__link> Etcd </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kubeadm-deployment/ title="kubeadm deployment" class=md-nav__link> kubeadm deployment </a> </li> <li class=md-nav__item> <a href=../../kubernetes/init-master-for-calico.sh/ title=Calico class=md-nav__link> Calico </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-addons/ title="Kubernetes 插件" class=md-nav__link> Kubernetes 插件 </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-certs/ title="Kubernetes 证书" class=md-nav__link> Kubernetes 证书 </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-istio/ title=Istio class=md-nav__link> Istio </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-prometheus/ title=prometheus class=md-nav__link> prometheus </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-storage/ title=storage class=md-nav__link> storage </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-openfaas/ title=openfaas class=md-nav__link> openfaas </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-openfaas-cloud/ title=openfaas-cloud class=md-nav__link> openfaas-cloud </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-tekton/ title=tekton class=md-nav__link> tekton </a> </li> <li class=md-nav__item> <a href=../../kubernetes/kube-knative/ title=knative class=md-nav__link> knative </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-5 type=checkbox id=nav-5 checked> <label class=md-nav__link for=nav-5> History <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=History data-md-level=1> <label class=md-nav__title for=nav-5> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> History </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../Docker%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ title=1.Docker概念 class=md-nav__link> 1.Docker概念 </a> </li> <li class=md-nav__item> <a href=../Electron%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ title="Electron 学习笔记" class=md-nav__link> Electron 学习笔记 </a> </li> <li class=md-nav__item> <a href=../JavaScript%20%E4%B9%8B%20Advanced%20Algorithms/ title="JavaScript 之 Advanced Algorithms" class=md-nav__link> JavaScript 之 Advanced Algorithms </a> </li> <li class=md-nav__item> <a href=../JavaScript%20%E4%B9%8B%E4%BA%8C%E5%8F%89%E6%A0%91/ title="JavaScript 之二叉树" class=md-nav__link> JavaScript 之二叉树 </a> </li> <li class=md-nav__item> <a href=../JavaScript%20%E4%B9%8B%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/ title="JavaScript 之十大经典排序算法" class=md-nav__link> JavaScript 之十大经典排序算法 </a> </li> <li class=md-nav__item> <a href=../JavaScript%20%E4%B9%8B%E5%9B%BE%E5%92%8C%E5%9B%BE%E7%B1%BB%E7%AE%97%E6%B3%95/ title="JavaScript 之图和图类算法" class=md-nav__link> JavaScript 之图和图类算法 </a> </li> <li class=md-nav__item> <a href=../JavaScript%20%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/ title="JavaScript 事件模型" class=md-nav__link> JavaScript 事件模型 </a> </li> <li class=md-nav__item> <a href=../Javascript%20%E4%B9%8B%E9%87%8D%E5%A4%8D%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2n%E6%AC%A1/ title="Javascript 之重复一个字符串n次" class=md-nav__link> Javascript 之重复一个字符串n次 </a> </li> <li class=md-nav__item> <a href=../Javascript%20%E5%AD%A6%E4%B9%A0%E4%B9%8B%20Object.defineProperty%28%29/ title="Javascript 学习之 Object.defineProperty()" class=md-nav__link> Javascript 学习之 Object.defineProperty() </a> </li> <li class=md-nav__item> <a href=../Javascript%20%E5%AD%A6%E4%B9%A0%E4%B9%8B%20this/ title="Javascript 学习之 this" class=md-nav__link> Javascript 学习之 this </a> </li> <li class=md-nav__item> <a href=../Javascript%20%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/ title="Javascript 学习之深拷贝和浅拷贝" class=md-nav__link> Javascript 学习之深拷贝和浅拷贝 </a> </li> <li class=md-nav__item> <a href=../Javascript%20%E8%83%BD%E5%8A%9B%E6%B5%8B%E8%AF%84%E7%BB%8F%E5%85%B8%E9%A2%98/ title="Javascript 能力测评经典题" class=md-nav__link> Javascript 能力测评经典题 </a> </li> <li class=md-nav__item> <a href=../Koa2%2BMongoDB%20%E6%9E%84%E5%BB%BA%20Restful%20%E5%90%8E%E7%AB%AF/ title="Koa2+MongoDB 构建 Restful 后端" class=md-nav__link> Koa2+MongoDB 构建 Restful 后端 </a> </li> <li class=md-nav__item> <a href=../NodeJS%20%E5%B8%B8%E7%94%A8%E5%8C%85%E5%8F%8A%E5%8A%9F%E8%83%BD/ title="NodeJS 常用包及功能" class=md-nav__link> NodeJS 常用包及功能 </a> </li> <li class=md-nav__item> <a href=../PWA%20%E4%B9%8B%20Service%20Worker/ title="PWA 之 Service Worker" class=md-nav__link> PWA 之 Service Worker </a> </li> <li class=md-nav__item> <a href=../Vuejs%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%8A%EF%BC%89/ title="Vuejs 学习笔记之基础篇（上）" class=md-nav__link> Vuejs 学习笔记之基础篇（上） </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> Vuejs 学习笔记之基础篇（下） <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg> </span> </label> <a href=./ title="Vuejs 学习笔记之基础篇（下）" class="md-nav__link md-nav__link--active"> Vuejs 学习笔记之基础篇（下） </a> <nav class="md-nav md-nav--secondary" aria-label=目录> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> 目录 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=#51 class=md-nav__link> 5.1 具名插槽 </a> </li> <li class=md-nav__item> <a href=#52 class=md-nav__link> 5.2 作用域插槽 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../Vuejs%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%20Vuex/ title="Vuejs 学习笔记之状态管理 Vuex" class=md-nav__link> Vuejs 学习笔记之状态管理 Vuex </a> </li> <li class=md-nav__item> <a href=../Vuejs%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BF%87%E6%B8%A1%E5%8A%A8%E7%94%BB/ title="Vuejs 学习笔记之过渡动画" class=md-nav__link> Vuejs 学习笔记之过渡动画 </a> </li> <li class=md-nav__item> <a href=../Web%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/ title=Web实用工具收集 class=md-nav__link> Web实用工具收集 </a> </li> <li class=md-nav__item> <a href=../%E5%9B%BE%E8%A7%A3%20HTTP%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ title="图解 HTTP 学习笔记" class=md-nav__link> 图解 HTTP 学习笔记 </a> </li> <li class=md-nav__item> <a href=../%E5%9F%BA%E4%BA%8E%20CodeIgniter%20%E7%9A%84%E8%BF%90%E7%BB%B4%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/ title="基于 CodeIgniter 的运维监控系统实现" class=md-nav__link> 基于 CodeIgniter 的运维监控系统实现 </a> </li> <li class=md-nav__item> <a href=../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%9D%82%E8%AE%B0/ title=基础知识杂记 class=md-nav__link> 基础知识杂记 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../../about/ title=About class=md-nav__link> About </a> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label=目录> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> 目录 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=#51 class=md-nav__link> 5.1 具名插槽 </a> </li> <li class=md-nav__item> <a href=#52 class=md-nav__link> 5.2 作用域插槽 </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content> <article class="md-content__inner md-typeset"> <blockquote> <p>笔记略长，阅久略乏，故一分为二。</p> </blockquote> <h1 id=5>5. 插槽<a class=headerlink href=#5 title="Permanent link">&para;</a></h1> <p>当子组件模板只有一个无属性插槽时，父组件传入的整个内容片段将插入到插槽所在的 DOM 位置，并替换掉插槽标签本身。 <code>&lt;slot&gt;</code> 标签中内容都被视为**备用内容**，在没有要插入的内容时才显示备用内容。</p> <h2 id=51>5.1 具名插槽<a class=headerlink href=#51 title="Permanent link">&para;</a></h2> <p><code>&lt;slot&gt;</code> 元素可以用一个特殊的特性 <code>name</code> 来配置如何分发内容。与其相对的是**匿名插槽**，作为找不到匹配的内容片段的备用插槽。</p> <p>假定<code>app-layout</code> 组件，其模板为：</p> <div class=highlight><pre><span></span><code>&lt;div class=&quot;container&quot;&gt;
+  &lt;header&gt;
+    &lt;slot name=&quot;header&quot;&gt;&lt;/slot&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+    &lt;slot&gt;&lt;/slot&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;
+    &lt;slot name=&quot;footer&quot;&gt;&lt;/slot&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+</code></pre></div> <p>父组件模板为：</p> <div class=highlight><pre><span></span><code>&lt;app-layout&gt;
+  &lt;h1 slot=&quot;header&quot;&gt;这里可能是一个页面标题&lt;/h1&gt;
+  &lt;p&gt;主要内容的一个段落。&lt;/p&gt;
+  &lt;p&gt;另一个主要段落。&lt;/p&gt;
+  &lt;p slot=&quot;footer&quot;&gt;这里有一些联系信息&lt;/p&gt;
+&lt;/app-layout&gt;
+</code></pre></div> <p>渲染结果为：</p> <div class=highlight><pre><span></span><code>&lt;div class=&quot;container&quot;&gt;
+  &lt;header&gt;
+    &lt;h1&gt;这里可能是一个页面标题&lt;/h1&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+    &lt;p&gt;主要内容的一个段落。&lt;/p&gt;
+    &lt;p&gt;另一个主要段落。&lt;/p&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;
+    &lt;p&gt;这里有一些联系信息&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+</code></pre></div> <h2 id=52>5.2 作用域插槽<a class=headerlink href=#52 title="Permanent link">&para;</a></h2> <p>作用域插槽用作一个 (能被传递数据的) 可重用模板，来代替已经渲染好的元素。</p> <p>在子组件中，只需将数据传递到插槽，就像你将 prop 传递给组件一样：</p> <div class=highlight><pre><span></span><code>&lt;ul&gt;
+  &lt;slot name=&quot;item&quot;
+    v-for=&quot;item in items&quot;
+    :text=&quot;item.text&quot;&gt;
+    &lt;!-- 这里写入备用内容 --&gt;
+  &lt;/slot&gt;
+&lt;/ul&gt;
+</code></pre></div> <p>在父级中，<code>slot-scope</code> 的值将被用作一个临时变量名，此变量接收从子组件传递过来的 prop 对象：</p> <div class=highlight><pre><span></span><code>&lt;my-awesome-list :items=&quot;items&quot;&gt;
+  &lt;!-- 作用域插槽也可以是具名的 --&gt;
+  &lt;li slot=&quot;item&quot;
+    slot-scope=&quot;props&quot;&gt;
+    {{ props.text }}
+  &lt;/li&gt;
+&lt;/my-awesome-list&gt;
+</code></pre></div> <h1 id=6-mixins>6. 混合 (Mixins)<a class=headerlink href=#6-mixins title="Permanent link">&para;</a></h1> <p>混合 (Mixins) 使Vue组件灵活地复用。</p> <div class=highlight><pre><span></span><code>// 定义一个混合对象
+var myMixin = {
+  created: function () {
+    console.log(&#39;hello from mixin!&#39;)
+  }
+}
+// 定义一个使用混合对象的组件
+var Component = Vue.extend({
+  mixins: [myMixin]
+})
+var component = new Component() // =&gt; &quot;hello from mixin!&quot;
+</code></pre></div> <h2 id=61>6.1 选项合并<a class=headerlink href=#61 title="Permanent link">&para;</a></h2> <ul> <li>混合对象的钩子与组件自身钩子同名，两者都被调用， 混合对象的钩将先执行 。</li> </ul> <div class=highlight><pre><span></span><code>var mixin = {
+  created: function () {
+    console.log(&#39;混合对象的钩子被调用&#39;)
+  }
+}
+new Vue({
+  mixins: [mixin],
+  created: function () {
+    console.log(&#39;组件钩子被调用&#39;)
+  }
+})
+// =&gt; &quot;混合对象的钩子被调用&quot;
+// =&gt; &quot;组件钩子被调用&quot;
+</code></pre></div> <ul> <li>值为对象的选项，例如 <code>methods</code>, <code>components</code> 和 <code>directives</code>，将被混合为同一个对象。两个对象键名冲突时，取组件对象的键值对。</li> </ul> <div class=highlight><pre><span></span><code>var mixin = {
+  methods: {
+    foo: function () {
+      console.log(&#39;foo&#39;)
+    },
+    conflicting: function () {
+      console.log(&#39;from mixin&#39;)
+    }
+  }
+}
+var vm = new Vue({
+  mixins: [mixin],
+  methods: {
+    bar: function () {
+      console.log(&#39;bar&#39;)
+    },
+    conflicting: function () {
+      console.log(&#39;from self&#39;)
+    }
+  }
+})
+vm.foo() // =&gt; &quot;foo&quot;
+vm.bar() // =&gt; &quot;bar&quot;
+vm.conflicting() // =&gt; &quot;from self&quot;
+</code></pre></div> <h2 id=62>6.2 全局混合<a class=headerlink href=#62 title="Permanent link">&para;</a></h2> <p>一旦全局注册混合对象，将会影响到 所有之后创建的 Vue 实例。</p> <div class=highlight><pre><span></span><code>Vue.mixin({})
+</code></pre></div> <h1 id=7>7. 自定义指令<a class=headerlink href=#7 title="Permanent link">&para;</a></h1> <p>除默认核心指令 (<code>v-model</code> 和 <code>v-show</code>)外，Vue 允许注册自定义指令。</p> <p>例如，当页面加载时，元素将获得焦点 (注意：autofocus 在移动版 Safari 上不工作)。</p> <ul> <li>全局注册</li> </ul> <div class=highlight><pre><span></span><code>// 注册一个全局自定义指令 v-focus
+Vue.directive(&#39;focus&#39;, {
+  // 当绑定元素插入到 DOM 中。
+  inserted: function (el) {
+    // 聚焦元素
+    el.focus()
+  }
+})
+</code></pre></div> <ul> <li>局部注册</li> </ul> <div class=highlight><pre><span></span><code>directives: {
+  focus: {
+    // 指令的定义
+    inserted: function (el) {
+      el.focus()
+    }
+  }
+}
+</code></pre></div> <ul> <li>使用指令</li> </ul> <div class=highlight><pre><span></span><code>&lt;input v-focus&gt;
+</code></pre></div> <h2 id=71>7.1 钩子函数<a class=headerlink href=#71 title="Permanent link">&para;</a></h2> <p>指令定义函数提供了几个钩子函数 ：</p> <ul> <li><code>bind</code>：只调用一次，指令第一次绑定到元素时调用，可定义始化动作。</li> <li><code>inserted</code>：被绑定元素插入父节点时调用 。</li> <li><code>update</code>：所在组件的 VNode 更新时调用，<strong>但是可能发生在其孩子的 VNode 更新之前</strong>。可通过比较更新前后的值来忽略不必要的模板更新 。</li> <li><code>componentUpdated</code>：所在组件的 VNode <strong>及其孩子的 VNode</strong> 全部更新时调用。</li> <li><code>unbind</code>：只调用一次，指令与元素解绑时调用。</li> </ul> <h2 id=72>7.2 钩子函数的参数<a class=headerlink href=#72 title="Permanent link">&para;</a></h2> <p>函数参数包括 <code>el</code>，<code>binding</code>，<code>vnode</code>，<code>oldVnode</code>。</p> <h1 id=8-render>8. 渲染函数 (render)<a class=headerlink href=#8-render title="Permanent link">&para;</a></h1> <p>Vue 绝大多数情况下使用 template 来创建 HTML。但也能通过 JavaScript 来实现，这得用到 <strong>render 函数</strong>。</p> <div class=highlight><pre><span></span><code>Vue.component(&#39;blog-header&#39;, {
+    render: function (createElement) {
+        return createElement(
+        &#39;h1&#39;,             //tag name 标签名称
+        this.blogTitle    //子组件中的阵列
+        )
+    }
+})
+</code></pre></div> <blockquote> <p>render可以做很多事情，请务必仔细看文档。</p> </blockquote> <h1 id=9>9. 插件<a class=headerlink href=#9 title="Permanent link">&para;</a></h1> <ul> <li>定义插件</li> </ul> <div class=highlight><pre><span></span><code>MyPlugin.install = function (Vue, options) {
+  // 1. 添加全局方法或属性
+  Vue.myGlobalMethod = function () {
+    // 逻辑...
+  }
+  // 2. 添加全局资源
+  Vue.directive(&#39;my-directive&#39;, {
+    bind (el, binding, vnode, oldVnode) {
+      // 逻辑...
+    }
+    ...
+  })
+  // 3. 注入组件
+  Vue.mixin({
+    created: function () {
+      // 逻辑...
+    }
+    ...
+  })
+  // 4. 添加实例方法
+  Vue.prototype.$myMethod = function (methodOptions) {
+    // 逻辑...
+  }
+}
+</code></pre></div> <ul> <li>使用插件</li> </ul> <div class=highlight><pre><span></span><code>Vue.use(MyPlugin, { someOption: true })
+</code></pre></div> <ul> <li><a href=https://github.com/vuejs/awesome-vue#components--libraries>awesome-vue</a> 集合了来自社区贡献的数以千计的插件和库。</li> </ul> <h1 id=10>10. 过滤器<a class=headerlink href=#10 title="Permanent link">&para;</a></h1> <ul> <li>自定义过滤器</li> </ul> <div class=highlight><pre><span></span><code>new Vue({
+  // ...
+  filters: {
+    capitalize: function (value) {
+      if (!value) return &#39;&#39;
+      value = value.toString()
+      return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+  }
+})
+</code></pre></div> <ul> <li>使用</li> </ul> <div class=highlight><pre><span></span><code>&lt;!-- in mustaches --&gt;
+{{ message | capitalize }}
+&lt;!-- in v-bind --&gt;
+&lt;div v-bind:id=&quot;message | capitalize&quot;&gt;&lt;/div&gt;
+</code></pre></div> </article> </div> </div> </main> <!-- Application footer --> <footer class=md-footer> <!-- Link to previous and/or next page --> <div class=md-footer-nav> <nav class="md-footer-nav__inner md-grid" aria-label=Footer> <!-- Link to previous page --> <a href=../Vuejs%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%8A%EF%BC%89/ title="Vuejs 学习笔记之基础篇（上）" class="md-footer-nav__link md-footer-nav__link--prev" rel=prev> <div class="md-footer-nav__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </div> <div class=md-footer-nav__title> <div class=md-ellipsis> <span class=md-footer-nav__direction> 上一页 </span> Vuejs 学习笔记之基础篇（上） </div> </div> </a> <!-- Link to next page --> <a href=../Vuejs%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%20Vuex/ title="Vuejs 学习笔记之状态管理 Vuex" class="md-footer-nav__link md-footer-nav__link--next" rel=next> <div class=md-footer-nav__title> <div class=md-ellipsis> <span class=md-footer-nav__direction> 下一页 </span> Vuejs 学习笔记之状态管理 Vuex </div> </div> <div class="md-footer-nav__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg> </div> </a> </nav> </div> <!-- Further information --> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <!-- Copyright and theme information --> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; Chenleilei 2020 </div> For a Better World With No Bugs. </div> <!-- Social links --> </div> </div> </footer> </div> <script src=../../assets/javascripts/vendor.d710d30a.min.js></script> <script src=../../assets/javascripts/bundle.a14cc5fd.min.js></script><script id=__lang type=application/json>{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script> <script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.7a2ea5ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script> </body> </html>
