@@ -1,0 +1,102 @@
+site_name: Tannhäuser Gate
+site_url: http://chenleileicode.com
+site_author: Chen Leilei
+site_description: My Learning Notes
+
+# Repository
+repo_name: silverbulllet/my-mkdocs
+repo_url: https://github.com/silverbulllet/my-mkdocs
+edit_uri: ""
+
+# Copyright
+copyright: Copyright &copy; Chenleilei 2020 
+
+# Configuration
+theme:
+  name: material
+  custom_dir: src # overrides
+
+  # 404 page
+  static_templates:
+    - 404.html
+
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: true
+
+  # Default values, taken from mkdocs_theme.yml
+  language: zh
+  features:
+    - tabs
+    #- instant
+  palette:
+    scheme: default
+    primary: teal
+    accent: teal
+  font:
+    text: Roboto
+    code: Roboto Mono
+  icon:
+    logo: logo
+  # favicon: assets/favicon.png
+
+# Plugins
+plugins:
+  - search
+  - minify:
+      minify_html: true
+
+# Customization
+# extra:
+
+# Extensions
+markdown_extensions:
+  - markdown.extensions.admonition
+  - markdown.extensions.attr_list
+  - markdown.extensions.codehilite:
+      guess_lang: false
+  - markdown.extensions.def_list
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+  - markdown.extensions.toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      linenums_style: pymdownx-inline
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Page tree
+nav:
+  - Home: index.md
+  - Learning Notes:
+    - Design Pattern: learning notes/1-design-pattern.md
+  - Serverless:
+    - Concept: serverless/concept.md
+    - Openfaas: serverless/openfaas.md
+    - Knative: serverless/knative.md
+  - Kubernetes:
+    - Etcd: kubernetes/1-etcd-deploy.md
+    - Serverless: kubernetes/2-serverless.md
+  - About: about.md
