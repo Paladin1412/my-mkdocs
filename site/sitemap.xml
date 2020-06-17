@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
+     <loc>http://chenleileicode.com/</loc>
+     <lastmod>2020-06-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://chenleileicode.com/learning%20notes/1-design-pattern/</loc>
+     <lastmod>2020-06-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://chenleileicode.com/serverless/concept/</loc>
+     <lastmod>2020-06-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://chenleileicode.com/serverless/openfaas/</loc>
+     <lastmod>2020-06-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://chenleileicode.com/serverless/knative/</loc>
+     <lastmod>2020-06-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://chenleileicode.com/kubernetes/1-etcd-deploy/</loc>
+     <lastmod>2020-06-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://chenleileicode.com/kubernetes/2-serverless/</loc>
+     <lastmod>2020-06-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://chenleileicode.com/about/</loc>
+     <lastmod>2020-06-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+</urlset>
